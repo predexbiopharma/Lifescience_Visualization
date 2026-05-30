@@ -287,7 +287,7 @@ ASR / incidence trend lines             registry data      →  SEER / GLOBOCAN
 
 ```r
 source("generate_adam_oncviz.R")
-datasets <- generate_adam_oncviz(output_dir = "./data")
+datasets <- generate_adam_oncviz(output_dir = "./Data/V1")
 ```
 
 **Load and subset**
@@ -295,8 +295,8 @@ datasets <- generate_adam_oncviz(output_dir = "./data")
 ```r
 library(dplyr)
 
-adsl  <- read.csv("data/ADSL.csv")
-adtte <- read.csv("data/ADTTE.csv")
+adsl  <- read.csv("Data/V1/ADSL.csv")
+adtte <- read.csv("Data/V1/ADTTE.csv")
 
 # Subset: NSCLC treatment arm
 nsclc_trt <- adsl |> filter(TUMORTYPE == "NSCLC", ARM == "TREATMENT")
@@ -308,7 +308,7 @@ os <- adtte |> filter(PARAMCD == "OS")
 # TP53MUT, STK11MUT, STAGE
 
 # Safe read for ADLB — Sodium PARAMCD is "SOD", not "NA"
-adlb   <- read.csv("data/ADLB.csv")
+adlb   <- read.csv("data/V1/ADLB.csv")
 sodium <- adlb |> filter(PARAMCD == "SOD")
 ```
 
