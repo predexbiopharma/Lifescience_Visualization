@@ -29,7 +29,7 @@ demonstration, and lack PK profiles, dose modification histories, mutation recor
 biomarkers. cBioPortal and TCGA provide rich genomic data but no longitudinal tumor measurements,
 no QoL, no pharmacokinetics, and no cross-domain consistency.
 
-Synthetic data is the right answer here — provided it is done carefully. The goal is not to trick
+Synthetic data is the right answer here, provided it is done carefully. The goal is not to trick
 anyone into thinking this is real. The goal is a dataset that behaves statistically like real
 oncology data, respects the biological relationships between domains, and is anchored to published
 benchmarks so that every number can be traced to a source. That is what this dataset is.
@@ -47,7 +47,7 @@ all histologies, which makes per-tumor subgroup analysis meaningless. This one d
 Other deliberate choices:
 
 ```
-Naive approach   one parameter set for all histologies — subgroup analysis meaningless
+Naive approach   one parameter set for all histologies, subgroup analysis meaningless
 This dataset     five independent calibrated profiles, one per tumor type
     + ADRAND (screening/CONSORT)
     + ADSIG  (mutational signatures)
