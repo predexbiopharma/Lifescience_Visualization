@@ -1,6 +1,6 @@
 # Lifescience Visualization
 
-**A systematic, production-ready catalog of clinical trial visualizations for oncology research, grounded in calibrated synthetic ADaM data, implemented in Python, and structured for direct deployment in regulatory and scientific contexts.**
+**A systematic, production-ready catalog of clinical trial visualizations for oncology research, grounded in calibrated synthetic ADaM data, implemented in R, and structured for direct deployment in regulatory and scientific contexts.**
 
 ---
 
@@ -10,7 +10,7 @@ Clinical trials generate some of the most consequential data in medicine. The an
 
 This repository addresses that gap systematically. It is a comprehensive, domain-stratified implementation of the visualization methods used across the full spectrum of oncology clinical trial research, from individual patient response timelines to population-level pharmacokinetics, from adverse event profiling to genomic landscape characterization, from single-cell immunophenotyping to competing-risks survival analysis. Each implementation is built on a shared synthetic dataset, ONCVIZ-001, that follows ADaM regulatory standards and is fully traceable to published clinical trial data, making every figure in this catalog reproducible, citable, and adaptable to real study data with minimal modification.
 
-The goal is not a visualization gallery. It is a rigorous reference implementation: grounded in regulatory methodology, calibrated to published efficacy and safety benchmarks, implemented cleanly in Python, and structured so that each visualization can be understood, validated, and deployed independently.
+The goal is not a visualization gallery. It is a rigorous reference implementation: grounded in regulatory methodology, calibrated to published efficacy and safety benchmarks, implemented cleanly in R, and structured so that each visualization can be understood, validated, and deployed independently.
 
 ---
 
@@ -18,7 +18,7 @@ The goal is not a visualization gallery. It is a rigorous reference implementati
 
 > **Current version:** Active development, Phase I (Oncology)
 >
-> The shared ADaM synthetic dataset (`Data/`) is complete and fully validated across 11 domains and 129,188 records. Visualization modules are being re-implemented progressively against this unified dataset, replacing earlier per-folder data copies. See the table below for current implementation status.
+> The shared ADaM synthetic dataset (`Data/`) is complete and fully validated across 13 domains and 131,690 records. Visualization modules are being implemented progressively against this unified dataset. See the table below for current implementation status.
 
 ---
 
@@ -42,7 +42,7 @@ The central question of any oncology efficacy trial is whether the treatment wor
 
 ### 02 · Survival & Time-to-Event
 
-Most Phase III oncology trials are powered to detect a survival endpoint. The Kaplan-Meier curve has been the standard representation of time-to-event data since Kaplan and Meier (1958) and remains indispensable because it conveys both the magnitude and the temporal uncertainty of a treatment effect simultaneously. This domain also includes model diagnostics (log-log plots, Schoenfeld residuals), newer estimands increasingly required under the proportional hazards assumption (RMST), and composite endpoint frameworks gaining traction in regulatory submissions.
+Most Phase III oncology trials are powered to detect a survival endpoint. The Kaplan-Meier curve has been the standard representation of time-to-event data since Kaplan and Meier (1958) and remains indispensable because it conveys both the magnitude and the temporal uncertainty of a treatment effect simultaneously. This domain also includes model diagnostics, newer estimands increasingly required under the proportional hazards assumption (RMST), and composite endpoint frameworks gaining traction in regulatory submissions.
 
 | Visualization | Primary Data | Status |
 |---|---|---|
@@ -76,7 +76,7 @@ Genomic and molecular biomarker visualizations span a wide methodological range,
 | Manhattan Plot | External (TCGA) | 🔜 Planned |
 | Miami Plot | External (TCGA) | 🔜 Planned |
 | Rainfall Plot | ADMUT | 🔜 Planned |
-| Mutational Signature Plot | External (TCGA / COSMIC) | 🔜 Planned |
+| Mutational Signature Plot | ADSIG | 🔜 Planned |
 | VAF (Variant Allele Frequency) Plot | ADMUT | 🔜 Planned |
 | ctDNA Dynamics Plot | ADBM | 🔜 Planned |
 | TMB (Tumor Mutational Burden) Plot | ADSL, ADMUT | 🔜 Planned |
@@ -86,7 +86,7 @@ Genomic and molecular biomarker visualizations span a wide methodological range,
 
 ### 04 · Immunology & Cellular
 
-Single-cell and flow cytometry-based visualizations represent a methodologically distinct class that requires data modalities, cell-level event tables, spectral unmixing outputs, single-cell transcriptomic count matrices, that differ structurally from standard ADaM clinical trial datasets. This domain is partially supported by longitudinal immune cell panel data in ADBM; plot types requiring single-cell resolution reference appropriate public data sources (GEO, Human Cell Atlas).
+Single-cell and flow cytometry-based visualizations represent a methodologically distinct class that requires data modalities that differ structurally from standard ADaM clinical trial datasets. This domain is partially supported by longitudinal immune cell panel data in ADBM; plot types requiring single-cell resolution reference appropriate public data sources (GEO, Human Cell Atlas).
 
 | Visualization | Primary Data | Status |
 |---|---|---|
@@ -101,7 +101,7 @@ Single-cell and flow cytometry-based visualizations represent a methodologically
 
 ### 05 · Safety & Toxicity
 
-Safety is not a secondary concern in clinical trials, in Phase I, it is the primary endpoint. Adverse event data is high-dimensional, hierarchically coded via MedDRA, and graded by CTCAE severity, making it one of the most analytically demanding domains to visualize rigorously. This domain is fully supported by ADAE and ADLB.
+Safety is not a secondary concern in clinical trials; in Phase I, it is the primary endpoint. Adverse event data is high-dimensional, hierarchically coded via MedDRA, and graded by CTCAE severity, making it one of the most analytically demanding domains to visualize rigorously. This domain is fully supported by ADAE and ADLB.
 
 | Visualization | Primary Data | Status |
 |---|---|---|
@@ -142,7 +142,7 @@ Target lesion measurement trajectories and scan-level timeline visualizations br
 
 ### 08 · Meta-Analysis & Comparison
 
-Meta-analytic visualizations synthesize evidence across trials, treatment arms, or subgroups. The forest plot is among the four most common figure types in published randomized controlled trials and is central to regulatory label negotiations. Network meta-analysis plots, benefit-risk visualizations, and funnel plots address the increasingly structured quantitative frameworks used in health technology assessment.
+Meta-analytic visualizations synthesize evidence across trials, treatment arms, or subgroups. The forest plot is among the most common figure types in published randomized controlled trials and is central to regulatory label negotiations. Network meta-analysis plots, benefit-risk visualizations, and funnel plots address the increasingly structured quantitative frameworks used in health technology assessment.
 
 | Visualization | Primary Data | Status |
 |---|---|---|
@@ -156,11 +156,11 @@ Meta-analytic visualizations synthesize evidence across trials, treatment arms, 
 
 ### 09 · Trial Design & Patient Flow
 
-Trial flow and exposure visualizations document the operational execution of a study, enrollment trajectories, treatment compliance, dose intensity, and patient disposition. CONSORT diagrams are required components of randomized trial publications under ICMJE reporting standards. Supported by ADSL and ADEX.
+Trial flow and exposure visualizations document the operational execution of a study: enrollment trajectories, treatment compliance, dose intensity, and patient disposition. CONSORT diagrams are required components of randomized trial publications under ICMJE reporting standards. Supported by ADRAND, ADSL, and ADEX.
 
 | Visualization | Primary Data | Status |
 |---|---|---|
-| CONSORT Diagram | ADSL | 🔜 Planned |
+| CONSORT Diagram | ADRAND, ADSL | 🔜 Planned |
 | Enrollment Over Time Plot | ADSL | 🔜 Planned |
 | Treatment Exposure Plot | ADEX | 🔜 Planned |
 | Dose Intensity Plot | ADEX | 🔜 Planned |
@@ -170,7 +170,7 @@ Trial flow and exposure visualizations document the operational execution of a s
 
 ### 10 · Cell Therapy / CAR-T Specific
 
-Cellular immunotherapy trials, particularly CAR-T, produce visualization challenges that have no analog in conventional pharmacological trials: CAR-T cell expansion kinetics spanning orders of magnitude, cytokine release syndrome timelines requiring hour-level resolution, and bone marrow response assessments reflecting a distinct efficacy paradigm from RECIST-based solid tumor measurement. Partially supported by ADBM and ADRS.
+Cellular immunotherapy trials produce visualization challenges that have no analog in conventional pharmacological trials: CAR-T cell expansion kinetics spanning orders of magnitude, cytokine release syndrome timelines requiring hour-level resolution, and bone marrow response assessments reflecting a distinct efficacy paradigm from RECIST-based solid tumor measurement. Partially supported by ADBM and ADRS.
 
 | Visualization | Primary Data | Status |
 |---|---|---|
@@ -194,7 +194,7 @@ Radiomics-based visualizations extract quantitative imaging features from radiol
 
 ### 12 · Epidemiology & Incidence
 
-Population-level cancer epidemiology visualizations, incidence trends, mortality-to-incidence ratios, stage distribution patterns — require registry-level datasets that are structurally incompatible with the single-trial ADaM architecture. This domain references SEER (Surveillance, Epidemiology, and End Results) and GLOBOCAN as authoritative public data sources.
+Population-level cancer epidemiology visualizations require registry-level datasets that are structurally incompatible with the single-trial ADaM architecture. This domain references SEER and GLOBOCAN as authoritative public data sources.
 
 | Visualization | Primary Data | Status |
 |---|---|---|
@@ -210,22 +210,24 @@ Population-level cancer epidemiology visualizations, incidence trends, mortality
 
 All visualizations in domains 01–11 are demonstrated on a single shared synthetic ADaM dataset — **ONCVIZ-001** — simulating a Phase II/III open-label randomized basket trial of a fictional oral kinase inhibitor (Vizatinib 300 mg QD) across five solid tumor histologies (NSCLC, CRC, HCC, PDAC, BRCA) at 20 investigational sites. The dataset comprises 400 virtual patients enrolled over 18 months with a data cutoff of March 5, 2026.
 
-Generation parameters were anchored to empirical distributions from cBioPortal (n = 2,153 pooled NSCLC patients) and to published trial benchmarks from KEYNOTE-189 (Gandhi et al., *N Engl J Med* 2018), the TCGA Lung Adenocarcinoma dataset, and the erlotinib population PK model (Ling et al., *J Clin Pharmacol* 2006). All outputs are exactly reproducible from `seed = 42`.
+Each histology carries independently calibrated response rates, survival parameters, mutation prevalences, toxicity profiles, and mutational signatures, enabling biologically valid per-tumor subgroup analyses. Generation parameters were anchored to empirical distributions from cBioPortal (n = 2,153 pooled NSCLC patients) and to published trial benchmarks from KEYNOTE-189 (Gandhi et al., *N Engl J Med* 2018), IMbrave150 (Finn et al., *N Engl J Med* 2020), OlympiAD (Robson et al., *N Engl J Med* 2017), the TCGA PanCancer Atlas, COSMIC v3.3, and the erlotinib population PK model (Ling et al., *J Clin Pharmacol* 2006). All outputs are exactly reproducible from `seed = 42`.
 
 | Domain | File | Records | Description |
 |---|---|---|---|
-| ADSL | `Data/ADSL.csv` | 400 | Subject-level: demographics, treatment arm, survival outcomes, biomarker status |
-| ADRS | `Data/ADRS.csv` | 1,632 | RECIST 1.1 response assessments per visit |
-| ADTR | `Data/ADTR.csv` | 7,082 | Sum of longest diameters (SLD) over time |
-| ADAE | `Data/ADAE.csv` | 3,941 | Adverse events with MedDRA coding and CTCAE grading |
-| ADLB | `Data/ADLB.csv` | 52,605 | Laboratory parameters (21 tests, 8 visits) |
-| ADTTE | `Data/ADTTE.csv` | 1,098 | Time-to-event: OS, PFS, DOR, TTR with 15 subgroup variables |
-| ADPK | `Data/ADPK.csv` | 9,180 | Plasma PK profiles (1-compartment model, treatment arm only) |
-| ADEX | `Data/ADEX.csv` | 13,550 | Dose exposure and cycle-level modifications |
-| ADBM | `Data/ADBM.csv` | 17,490 | Longitudinal biomarkers and immune cell panel |
-| ADPR | `Data/ADPR.csv` | 21,478 | Patient-reported outcomes (EORTC QLQ-C30) |
-| ADMUT | `Data/ADMUT.csv` | 732 | Somatic mutation calls (15 cancer genes) |
-| **Total** | | **129,188** | |
+| ADSL | `Data/ADSL.csv` | 400 | Subject-level: demographics, treatment arm, survival outcomes, biomarker and mutation status |
+| ADRS | `Data/ADRS.csv` | 1,211 | RECIST 1.1 response assessments per visit, Markov-chain trajectories |
+| ADTR | `Data/ADTR.csv` | 6,539 | Sum of longest diameters (SLD) over time |
+| ADAE | `Data/ADAE.csv` | 5,213 | Adverse events with MedDRA coding, CTCAE v5 grading, histology-specific incidence |
+| ADLB | `Data/ADLB.csv` | 53,298 | Laboratory parameters (21 tests, 8 visits, CTCAE grading for all applicable parameters) |
+| ADTTE | `Data/ADTTE.csv` | 970 | Time-to-event: OS, PFS, DOR, TTR with 15 subgroup variables and landmark flags |
+| ADPK | `Data/ADPK.csv` | 8,942 | Plasma PK profiles (1-compartment model, treatment arm only) |
+| ADEX | `Data/ADEX.csv` | 12,484 | Dose exposure and cycle-level modifications including re-escalation records |
+| ADBM | `Data/ADBM.csv` | 17,724 | Longitudinal biomarkers and immune cell panel |
+| ADPR | `Data/ADPR.csv` | 21,697 | Patient-reported outcomes (EORTC QLQ-C30, 11 scales) |
+| ADMUT | `Data/ADMUT.csv` | 753 | Somatic mutation calls (15 cancer genes, tumor-stratified prevalence) |
+| ADRAND | `Data/ADRAND.csv` | 459 | Screening and randomization log (459 screened, 59 screen failures, 400 randomized) |
+| ADSIG | `Data/ADSIG.csv` | 2,000 | Mutational signatures (SBS, COSMIC v3.3, 5 signatures per patient) |
+| **Total** | | **131,690** | |
 
 For complete dataset documentation including calibration methodology, domain architecture, internal consistency validation, and full reference list, see [`Data/README.md`](Data/README.md).
 
@@ -238,12 +240,13 @@ Lifescience_Visualization/
 │
 ├── README.md
 ├── Data/                              ← Shared synthetic ADaM dataset (ONCVIZ-001)
-│   ├── ADSL.csv  ADRS.csv  ADTR.csv
-│   ├── ADAE.csv  ADLB.csv  ADTTE.csv
-│   ├── ADPK.csv  ADEX.csv  ADBM.csv
-│   ├── ADPR.csv  ADMUT.csv
-│   ├── generate_adam_synthetic.R
-│   └── README.md                     ← Full dataset methodology paper
+│   ├── ADSL.csv   ADRS.csv   ADTR.csv
+│   ├── ADAE.csv   ADLB.csv   ADTTE.csv
+│   ├── ADPK.csv   ADEX.csv   ADBM.csv
+│   ├── ADPR.csv   ADMUT.csv
+│   ├── ADRAND.csv ADSIG.csv
+│   ├── generate_adam_oncviz.R
+│   └── README.md                     ← Full dataset methodology and validation
 │
 └── oncology/
     ├── 01_Response_Assessment/
@@ -270,7 +273,7 @@ Each visualization folder follows a uniform structure:
 ```
 Plot_Name/
 ├── README.md          ← analytical rationale, design decisions, regulatory context, references
-├── plot_name.py       ← standalone Python script (reads from ../../Data/)
+├── plot_name.R        ← standalone R script (reads from ../../Data/)
 └── output/            ← example outputs at publication resolution (300 dpi)
 ```
 
@@ -294,12 +297,9 @@ The visualizations in this repository are implemented in accordance with publish
 
 ## Requirements
 
-```
-pandas
-numpy
-matplotlib
-scipy
-lifelines       # survival analysis
+```r
+install.packages(c("dplyr", "tidyr", "purrr", "ggplot2",
+                   "survival", "survminer", "scales", "ggrepel"))
 ```
 
 ---
@@ -307,4 +307,4 @@ lifelines       # survival analysis
 ## License
 
 Dataset released under **Creative Commons Attribution 4.0 International (CC BY 4.0)**.  
-Code released under **MIT License**.  
+Code released under **MIT License**.
