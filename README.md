@@ -1,122 +1,310 @@
 # Lifescience Visualization
- 
-Data tells the story. This repository makes it visible.
- 
----
- 
-## Why this exists
- 
-Clinical trials produce some of the most consequential data in medicine — yet the standard for how that data is communicated has lagged far behind its complexity. Regulatory submissions, scientific publications, and clinical team reviews still rely heavily on dense summary tables that require significant effort to interpret and offer little intuition about what is actually happening at the patient level.
- 
-Visualization changes that. A well-designed swimmer plot communicates treatment duration, response, and outcome for every patient in a trial simultaneously — something no table can do. A waterfall plot makes the distribution of tumor response immediately legible. A Kaplan-Meier curve has become one of the most recognized figures in oncology precisely because it translates survival probability into something physicians and regulators can reason about directly.
- 
-This repository is a systematic, production-ready implementation of the full spectrum of visualizations used in clinical trial research — from individual patient timelines to population-level pharmacokinetics, from adverse event profiling to subgroup forest plots. Each implementation is built on synthetic ADaM-standard datasets that mirror the structure of real study data, making them directly adaptable to actual trials.
- 
-The goal is not a gallery. It is a rigorous, reproducible reference — grounded in published analytical standards, implemented cleanly in Python, and structured so that each visualization can be understood, validated, and deployed independently.
- 
----
 
-## Implemented
-
-| Plot | Description |
-|---|---|
-| [Swimmer plot](clinical_trials/swimmer_plot/) | Individual patient treatment timelines, responses, and endpoints |
-| [Waterfall plot](clinical_trials/Waterfall_plot/) | Best % change from baseline in target lesion size |
-| [Spider plot](clinical_trials/Spider_plot/) | Tumor burden trajectories over time |
-| [Response heatmap](clinical_trials/Heatmap_plot/) | ORR by cohort and tumor type |
-| Kaplan-Meier | Survival and time-to-event analysis |
-| Forest plot | Subgroup treatment effect estimates |
+**A systematic, production-ready catalog of clinical trial visualizations for oncology research, grounded in calibrated synthetic ADaM data, implemented in Python, and structured for direct deployment in regulatory and scientific contexts.**
 
 ---
- 
-## Scope
- 
-Clinical trial data spans five analytical domains. This repository covers all of them systematically. Each domain reflects a distinct set of scientific questions that visualization is uniquely positioned to answer.alization lives in its own folder with a README, a standalone Python script, synthetic data, and example outputs — ready to run as-is or adapt to real study data.
 
-### Response & Efficacy
- 
-The central question of any oncology trial is whether the treatment works — and for whom. Response visualizations operate at the level of individual patients, making heterogeneity visible and enabling the kind of nuanced interpretation that aggregate statistics obscure.
- 
-Swimmer plots show each patient's full treatment timeline alongside response assessments and study endpoints, making it possible to see patterns — late responders, durable remissions, early discontinuations — that summary tables cannot capture. Waterfall plots rank patients by their best tumor response and communicate the distribution of efficacy at a glance. Spider plots add the temporal dimension, showing not just how much tumors changed but when and how consistently.
- 
-*Swimmer plot · Waterfall plot · Spider plot · Response heatmap · Best overall response bar chart · Dose-response curve · Sanctuary site plot · Time-to-response vs. duration-of-response · Concordance plot · RECIST transition plot · Target lesion trajectory plot*
- 
-### Survival & Time-to-Event
- 
-Most Phase III oncology trials are powered to detect a survival endpoint — overall survival or progression-free survival. The Kaplan-Meier curve has been the standard representation of survival data since 1958, and it remains indispensable precisely because it conveys both the magnitude and the uncertainty of the treatment effect over time.
- 
-Beyond the standard curve, this domain includes the diagnostics needed to validate survival models — proportional hazards testing via log-log plots and Schoenfeld residuals — as well as newer methods like RMST that are increasingly required when the proportional hazards assumption does not hold, and composite endpoint visualizations like the win ratio that have gained traction in regulatory settings.
- 
-*Kaplan-Meier curve · Competing risk plot · Landmark analysis plot · Hazard ratio forest plot · Log-log survival plot · Schoenfeld residual plot · RMST plot · Cumulative hazard plot · Net benefit curve · Win ratio plot*
- 
-### Safety & Tolerability
- 
-Safety is not a secondary concern in clinical trials — in Phase I, it is the primary endpoint. Adverse event data is high-dimensional, hierarchically coded via MedDRA, and graded by severity, making it one of the most analytically demanding domains to visualize well.
- 
-The eDISH plot was developed specifically to detect drug-induced liver injury by tracking ALT and bilirubin simultaneously — a pattern that emerges from the combination of values that neither alone would reveal. The tendril plot maps the temporal evolution of adverse events across the trial timeline, making it possible to see whether toxicities are early and resolving or late and accumulating. Butterfly plots allow direct comparison of AE profiles between treatment arms without requiring the reader to mentally subtract one table from another.
- 
-*AE dot plot · Butterfly plot · Circular / radar plot · eDISH plot · Shift plot · Lab longitudinal plot · Volcano plot · Tendril plot · AE onset time plot · QTc dispersion plot · Lab outlier boxplot · Hy's Law quadrant chart · Prevalence-over-time safety plot*
- 
-### Patient-Level & Subgroup Data
- 
-Individual patient data and subgroup analyses serve different but complementary purposes. Patient-level visualizations — dose modification timelines, concomitant medication overlays, missing data pattern maps — are essential for clinical operations and data quality review. Subgroup visualizations are central to regulatory submissions and scientific communication.
- 
-The forest plot is one of the four most common figure types in published randomized controlled trials, alongside Kaplan-Meier curves, flow diagrams, and repeated measures graphs. It distills treatment effect estimates and confidence intervals across demographic and clinical subgroups into a form that makes consistency — or heterogeneity — immediately apparent. The patient disposition Sankey diagram makes trial flow legible in a way that the standard CONSORT flowchart cannot match when dropout reasons are complex or numerous.
- 
-*Slide plot · Forest plot · Oncoprint · Patient profile dashboard · Subgroup interaction plot · Spaghetti plot · Patient disposition Sankey diagram · Dose intensity step plot · Concomitant medication timeline · Missing data pattern plot*
- 
-### PK/PD & Biomarkers
- 
-Pharmacokinetic and pharmacodynamic data underpin dose selection, exposure-response relationships, and biomarker-driven patient stratification. Population PK modeling and visual predictive checks are standard components of NDA and BLA submissions. Exposure-response plots are increasingly required by regulators as evidence that the selected dose is justified not just by safety but by efficacy.
- 
-The ROC curve and biomarker kinetic plots connect molecular data to clinical outcomes, supporting the development of companion diagnostics and patient enrichment strategies that have become central to modern oncology drug development.
- 
-*Concentration-time curve · Exposure-response plot · Visual Predictive Check (VPC) · Hysteresis loop plot · Biomarker kinetic plot · ROC curve · IVIVC plot · Population PK parameter distribution · Target engagement plot*
- 
+## Overview
+
+Clinical trials generate some of the most consequential data in medicine. The analytical standards governing how that data is collected, modeled, and reported have advanced considerably over the past two decades, yet the standards governing how it is *visualized* have lagged behind. Regulatory submissions, peer-reviewed publications, and clinical team reviews continue to rely on dense summary tables that demand substantial interpretive effort and offer little intuition about what is actually happening at the level of individual patients or biological mechanisms.
+
+This repository addresses that gap systematically. It is a comprehensive, domain-stratified implementation of the visualization methods used across the full spectrum of oncology clinical trial research, from individual patient response timelines to population-level pharmacokinetics, from adverse event profiling to genomic landscape characterization, from single-cell immunophenotyping to competing-risks survival analysis. Each implementation is built on a shared synthetic dataset, ONCVIZ-001, that follows ADaM regulatory standards and is fully traceable to published clinical trial data, making every figure in this catalog reproducible, citable, and adaptable to real study data with minimal modification.
+
+The goal is not a visualization gallery. It is a rigorous reference implementation: grounded in regulatory methodology, calibrated to published efficacy and safety benchmarks, implemented cleanly in Python, and structured so that each visualization can be understood, validated, and deployed independently.
+
 ---
- 
-## Synthetic data
- 
-All visualizations are demonstrated on a shared synthetic ADaM dataset simulating a Phase I oncology trial — 50 patients, 4 dose cohorts, multiple tumor types. The dataset follows ADaM structure and naming conventions used in regulatory submissions.
- 
-| File | Description |
-|---|---|
-| `ADSL.csv` | Subject-level: demographics, treatment dates, study status, disposition |
-| `ADRS.csv` | Response: CR, PR, SD, PD per assessment visit with dates |
-| `ADTR.csv` | Tumor measurements: sum of target lesion diameters over time |
- 
+
+## Repository Status
+
+> **Current version:** Active development, Phase I (Oncology)
+>
+> The shared ADaM synthetic dataset (`Data/`) is complete and fully validated across 11 domains and 129,188 records. Visualization modules are being re-implemented progressively against this unified dataset, replacing earlier per-folder data copies. See the table below for current implementation status.
+
 ---
- 
-## Standards and references
- 
-The visualizations in this repository are grounded in published methodology:
- 
-- Chia PL, et al. (2016). Current and Evolving Methods to Visualize Biological Data in Cancer Research. *JNCI*, 108(8).
-- Seymour L, et al. (2017). iRECIST: guidelines for response criteria for use in trials testing immunotherapeutics. *Lancet Oncology*, 18(3).
-- FDA (2019). Exposure-Response Relationships — Study Design, Data Analysis, and Regulatory Applications.
-- ICH E9 (R1) (2019). Addendum on Estimands and Sensitivity Analysis in Clinical Trials.
+
+## Visualization Catalog
+
+The catalog is organized into twelve analytical domains reflecting the distinct scientific questions that each class of visualization is designed to answer.
+
+### 01 · Response Assessment
+
+The central question of any oncology efficacy trial is whether the treatment works — and for whom. Response visualizations operate at the level of individual patients, making inter-patient heterogeneity legible and enabling the nuanced interpretation of efficacy that aggregate statistics systematically obscure.
+
+| Visualization | Primary Data | Status |
+|---|---|---|
+| Waterfall Plot | ADTR, ADRS | ✅ Implemented |
+| Spider Plot | ADTR | ✅ Implemented |
+| Swimmer Plot | ADSL, ADRS, ADTR | ✅ Implemented |
+| Best Overall Response (BOR) Plot | ADRS | ✅ Implemented |
+| Tumor Burden Plot | ADTR | 🔄 In progress |
+
 ---
- 
+
+### 02 · Survival & Time-to-Event
+
+Most Phase III oncology trials are powered to detect a survival endpoint. The Kaplan-Meier curve has been the standard representation of time-to-event data since Kaplan and Meier (1958) and remains indispensable because it conveys both the magnitude and the temporal uncertainty of a treatment effect simultaneously. This domain also includes model diagnostics (log-log plots, Schoenfeld residuals), newer estimands increasingly required under the proportional hazards assumption (RMST), and composite endpoint frameworks gaining traction in regulatory submissions.
+
+| Visualization | Primary Data | Status |
+|---|---|---|
+| Kaplan-Meier Curve | ADTTE | 🔜 Planned |
+| Overall Survival (OS) Curve | ADTTE | 🔜 Planned |
+| Progression-Free Survival (PFS) Curve | ADTTE | 🔜 Planned |
+| Event-Free Survival (EFS) Curve | ADTTE | 🔜 Planned |
+| Disease-Free Survival (DFS) Curve | ADTTE | 🔜 Planned |
+| Time to Response (TTR) Plot | ADTTE | 🔜 Planned |
+| Time to Progression (TTP) Plot | ADTTE | 🔜 Planned |
+| Duration of Response (DOR) Plot | ADTTE | 🔜 Planned |
+| Landmark Analysis Plot | ADTTE | 🔜 Planned |
+| Competing Risks Curve (Cumulative Incidence) | ADTTE | 🔜 Planned |
+| Restricted Mean Survival Time (RMST) Plot | ADTTE | 🔜 Planned |
+
+---
+
+### 03 · Biomarker & Genomics
+
+Genomic and molecular biomarker visualizations span a wide methodological range, from individual variant annotation (lollipop plots) to population-level mutational pattern decomposition (signature plots), and from pairwise statistical testing (volcano plots) to whole-genome structural visualization (circos diagrams). This domain draws primarily on ADMUT and ADBM, supplemented by ADSL for co-variates.
+
+| Visualization | Primary Data | Status |
+|---|---|---|
+| Lollipop Plot (Mutation) | ADMUT | 🔜 Planned |
+| OncoPrint / Oncoprint Heatmap | ADMUT, ADSL | 🔜 Planned |
+| Volcano Plot | ADBM | 🔜 Planned |
+| Forest Plot (Subgroup Analysis) | ADTTE, ADSL | 🔜 Planned |
+| Mutation Landscape Plot | ADMUT | 🔜 Planned |
+| Copy Number Variation (CNV) Plot | External (TCGA) | 🔜 Planned |
+| Circos Plot | External (TCGA) | 🔜 Planned |
+| Manhattan Plot | External (TCGA) | 🔜 Planned |
+| Miami Plot | External (TCGA) | 🔜 Planned |
+| Rainfall Plot | ADMUT | 🔜 Planned |
+| Mutational Signature Plot | External (TCGA / COSMIC) | 🔜 Planned |
+| VAF (Variant Allele Frequency) Plot | ADMUT | 🔜 Planned |
+| ctDNA Dynamics Plot | ADBM | 🔜 Planned |
+| TMB (Tumor Mutational Burden) Plot | ADSL, ADMUT | 🔜 Planned |
+| MSI (Microsatellite Instability) Plot | ADSL | 🔜 Planned |
+
+---
+
+### 04 · Immunology & Cellular
+
+Single-cell and flow cytometry-based visualizations represent a methodologically distinct class that requires data modalities, cell-level event tables, spectral unmixing outputs, single-cell transcriptomic count matrices, that differ structurally from standard ADaM clinical trial datasets. This domain is partially supported by longitudinal immune cell panel data in ADBM; plot types requiring single-cell resolution reference appropriate public data sources (GEO, Human Cell Atlas).
+
+| Visualization | Primary Data | Status |
+|---|---|---|
+| Flow Cytometry Plot (Scatter / Gating) | External (GEO) | 🔜 Planned |
+| UMAP Plot | External (GEO / HCA) | 🔜 Planned |
+| t-SNE Plot | External (GEO / HCA) | 🔜 Planned |
+| Cell Composition Bar Plot | ADBM | 🔜 Planned |
+| Immune Cell Infiltration Heatmap | ADBM | 🔜 Planned |
+| CyTOF Dot Plot | External (GEO) | 🔜 Planned |
+
+---
+
+### 05 · Safety & Toxicity
+
+Safety is not a secondary concern in clinical trials, in Phase I, it is the primary endpoint. Adverse event data is high-dimensional, hierarchically coded via MedDRA, and graded by CTCAE severity, making it one of the most analytically demanding domains to visualize rigorously. This domain is fully supported by ADAE and ADLB.
+
+| Visualization | Primary Data | Status |
+|---|---|---|
+| Adverse Event (AE) Bar Chart | ADAE | 🔜 Planned |
+| Dose-Limiting Toxicity (DLT) Plot | ADAE, ADEX | 🔜 Planned |
+| Toxicity Heatmap | ADAE, ADLB | ✅ Implemented |
+| Time-to-Toxicity Plot | ADAE | 🔜 Planned |
+| Exposure-Response Plot | ADPK, ADAE | 🔜 Planned |
+| Dose Escalation Plot (3+3 / BOIN) | ADEX, ADAE | 🔜 Planned |
+
+---
+
+### 06 · Pharmacokinetics / Pharmacodynamics (PK/PD)
+
+PK/PD visualizations underpin dose selection, exposure-response characterization, and the regulatory justification of the proposed dose. Population PK modeling and visual predictive checks are standard components of NDA and BLA submissions. This domain is fully supported by ADPK and ADBM.
+
+| Visualization | Primary Data | Status |
+|---|---|---|
+| PK Concentration-Time Curve | ADPK | 🔜 Planned |
+| Trough Level Plot | ADPK | 🔜 Planned |
+| PD Biomarker Plot | ADBM, ADPK | 🔜 Planned |
+| Exposure-Efficacy Plot | ADPK, ADRS | 🔜 Planned |
+| Waterfall + PK Overlay | ADTR, ADPK | 🔜 Planned |
+
+---
+
+### 07 · Imaging & Tumor Measurement
+
+Target lesion measurement trajectories and scan-level timeline visualizations bridge the gap between radiology data and clinical interpretation, supporting the assessment of response kinetics and measurement variability across sites and time points. Supported by ADTR and ADRS.
+
+| Visualization | Primary Data | Status |
+|---|---|---|
+| Sum of Longest Diameters (SLD) Over Time | ADTR | 🔜 Planned |
+| Target Lesion Change Plot | ADTR | 🔜 Planned |
+| Scan Timeline Plot | ADRS, ADTR | 🔜 Planned |
+
+---
+
+### 08 · Meta-Analysis & Comparison
+
+Meta-analytic visualizations synthesize evidence across trials, treatment arms, or subgroups. The forest plot is among the four most common figure types in published randomized controlled trials and is central to regulatory label negotiations. Network meta-analysis plots, benefit-risk visualizations, and funnel plots address the increasingly structured quantitative frameworks used in health technology assessment.
+
+| Visualization | Primary Data | Status |
+|---|---|---|
+| Forest Plot | ADTTE, ADSL | 🔜 Planned |
+| Funnel Plot | External (published studies) | 🔜 Planned |
+| Network Meta-Analysis (NMA) Plot | External (published studies) | 🔜 Planned |
+| Benefit-Risk Plot | ADTTE, ADAE | 🔜 Planned |
+| Tornado Plot | ADTTE, ADAE | 🔜 Planned |
+
+---
+
+### 09 · Trial Design & Patient Flow
+
+Trial flow and exposure visualizations document the operational execution of a study, enrollment trajectories, treatment compliance, dose intensity, and patient disposition. CONSORT diagrams are required components of randomized trial publications under ICMJE reporting standards. Supported by ADSL and ADEX.
+
+| Visualization | Primary Data | Status |
+|---|---|---|
+| CONSORT Diagram | ADSL | 🔜 Planned |
+| Enrollment Over Time Plot | ADSL | 🔜 Planned |
+| Treatment Exposure Plot | ADEX | 🔜 Planned |
+| Dose Intensity Plot | ADEX | 🔜 Planned |
+| Relative Dose Intensity (RDI) Plot | ADEX | 🔜 Planned |
+
+---
+
+### 10 · Cell Therapy / CAR-T Specific
+
+Cellular immunotherapy trials, particularly CAR-T, produce visualization challenges that have no analog in conventional pharmacological trials: CAR-T cell expansion kinetics spanning orders of magnitude, cytokine release syndrome timelines requiring hour-level resolution, and bone marrow response assessments reflecting a distinct efficacy paradigm from RECIST-based solid tumor measurement. Partially supported by ADBM and ADRS.
+
+| Visualization | Primary Data | Status |
+|---|---|---|
+| CAR-T Cell Expansion Curve | ADBM | 🔜 Planned |
+| Cytokine Release Syndrome (CRS) Timeline | ADAE, ADBM | 🔜 Planned |
+| Bone Marrow Response Plot | ADBM | 🔜 Planned |
+
+---
+
+### 11 · Radiomics & Imaging Analytics
+
+Radiomics-based visualizations extract quantitative imaging features from radiology scans and connect them to clinical outcomes. These approaches require imaging-derived feature matrices that extend beyond standard ADaM data structures; where ADTR cannot serve as a proxy, appropriate public imaging datasets (TCIA) are referenced.
+
+| Visualization | Primary Data | Status |
+|---|---|---|
+| Heatmap Overlay (Tumor Heterogeneity) | External (TCIA) | 🔜 Planned |
+| Radiomics Feature Importance Plot | External (TCIA) | 🔜 Planned |
+| Lesion Size Over Time Plot | ADTR | 🔜 Planned |
+
+---
+
+### 12 · Epidemiology & Incidence
+
+Population-level cancer epidemiology visualizations, incidence trends, mortality-to-incidence ratios, stage distribution patterns — require registry-level datasets that are structurally incompatible with the single-trial ADaM architecture. This domain references SEER (Surveillance, Epidemiology, and End Results) and GLOBOCAN as authoritative public data sources.
+
+| Visualization | Primary Data | Status |
+|---|---|---|
+| Age-Standardized Incidence Rate (ASR) Plot | External (SEER / GLOBOCAN) | 🔜 Planned |
+| Cancer Incidence Trend Line | External (SEER / GLOBOCAN) | 🔜 Planned |
+| Mortality-to-Incidence Ratio Plot | External (SEER / GLOBOCAN) | 🔜 Planned |
+| Stage Distribution Bar Chart | ADSL / External | 🔜 Planned |
+| Prevalence Pie / Donut Chart | External (SEER / GLOBOCAN) | 🔜 Planned |
+
+---
+
+## Synthetic Dataset: ONCVIZ-001
+
+All visualizations in domains 01–11 are demonstrated on a single shared synthetic ADaM dataset — **ONCVIZ-001** — simulating a Phase II/III open-label randomized basket trial of a fictional oral kinase inhibitor (Vizatinib 300 mg QD) across five solid tumor histologies (NSCLC, CRC, HCC, PDAC, BRCA) at 20 investigational sites. The dataset comprises 400 virtual patients enrolled over 18 months with a data cutoff of March 5, 2026.
+
+Generation parameters were anchored to empirical distributions from cBioPortal (n = 2,153 pooled NSCLC patients) and to published trial benchmarks from KEYNOTE-189 (Gandhi et al., *N Engl J Med* 2018), the TCGA Lung Adenocarcinoma dataset, and the erlotinib population PK model (Ling et al., *J Clin Pharmacol* 2006). All outputs are exactly reproducible from `seed = 42`.
+
+| Domain | File | Records | Description |
+|---|---|---|---|
+| ADSL | `Data/ADSL.csv` | 400 | Subject-level: demographics, treatment arm, survival outcomes, biomarker status |
+| ADRS | `Data/ADRS.csv` | 1,632 | RECIST 1.1 response assessments per visit |
+| ADTR | `Data/ADTR.csv` | 7,082 | Sum of longest diameters (SLD) over time |
+| ADAE | `Data/ADAE.csv` | 3,941 | Adverse events with MedDRA coding and CTCAE grading |
+| ADLB | `Data/ADLB.csv` | 52,605 | Laboratory parameters (21 tests, 8 visits) |
+| ADTTE | `Data/ADTTE.csv` | 1,098 | Time-to-event: OS, PFS, DOR, TTR with 15 subgroup variables |
+| ADPK | `Data/ADPK.csv` | 9,180 | Plasma PK profiles (1-compartment model, treatment arm only) |
+| ADEX | `Data/ADEX.csv` | 13,550 | Dose exposure and cycle-level modifications |
+| ADBM | `Data/ADBM.csv` | 17,490 | Longitudinal biomarkers and immune cell panel |
+| ADPR | `Data/ADPR.csv` | 21,478 | Patient-reported outcomes (EORTC QLQ-C30) |
+| ADMUT | `Data/ADMUT.csv` | 732 | Somatic mutation calls (15 cancer genes) |
+| **Total** | | **129,188** | |
+
+For complete dataset documentation including calibration methodology, domain architecture, internal consistency validation, and full reference list, see [`Data/README.md`](Data/README.md).
+
+---
+
+## Repository Structure
+
+```
+Lifescience_Visualization/
+│
+├── README.md
+├── Data/                              ← Shared synthetic ADaM dataset (ONCVIZ-001)
+│   ├── ADSL.csv  ADRS.csv  ADTR.csv
+│   ├── ADAE.csv  ADLB.csv  ADTTE.csv
+│   ├── ADPK.csv  ADEX.csv  ADBM.csv
+│   ├── ADPR.csv  ADMUT.csv
+│   ├── generate_adam_synthetic.R
+│   └── README.md                     ← Full dataset methodology paper
+│
+└── oncology/
+    ├── 01_Response_Assessment/
+    │   ├── Waterfall_Plot/
+    │   ├── Spider_Plot/
+    │   ├── Swimmer_Plot/
+    │   ├── BOR_Plot/
+    │   └── Tumor_Burden_Plot/
+    ├── 02_Survival_Time_to_Event/     ← 11 plot types
+    ├── 03_Biomarker_Genomics/         ← 15 plot types
+    ├── 04_Immunology_Cellular/        ← 6 plot types
+    ├── 05_Safety_Toxicity/            ← 6 plot types
+    ├── 06_PK_PD/                      ← 5 plot types
+    ├── 07_Imaging_Tumor_Measurement/  ← 3 plot types
+    ├── 08_Meta_Analysis_Comparison/   ← 5 plot types
+    ├── 09_Trial_Design_Patient_Flow/  ← 5 plot types
+    ├── 10_Cell_Therapy_CART/          ← 3 plot types
+    ├── 11_Radiomics_Imaging/          ← 3 plot types
+    └── 12_Epidemiology_Incidence/     ← 5 plot types
+```
+
+Each visualization folder follows a uniform structure:
+
+```
+Plot_Name/
+├── README.md          ← analytical rationale, design decisions, regulatory context, references
+├── plot_name.py       ← standalone Python script (reads from ../../Data/)
+└── output/            ← example outputs at publication resolution (300 dpi)
+```
+
+---
+
+## Standards & Methodological Grounding
+
+The visualizations in this repository are implemented in accordance with published regulatory and analytical standards:
+
+- **RECIST 1.1** — Eisenhauer EA et al. *Eur J Cancer* 2009;45(2):228–247.
+- **iRECIST** — Seymour L et al. *Lancet Oncol* 2017;18(3):e143–e152.
+- **ICH E9 (R1)** — Addendum on Estimands and Sensitivity Analysis in Clinical Trials. 2019.
+- **ICH E3** — Structure and Content of Clinical Study Reports. 1995.
+- **FDA Exposure-Response Guidance** — Study Design, Data Analysis, and Regulatory Applications. 2019.
+- **CTCAE v5.0** — National Cancer Institute. 2017.
+- **ADaM Implementation Guide** — CDISC ADaM Team. Version 1.3. 2021.
+- **CONSORT 2010** — Schulz KF et al. *JAMA* 2010;303(7):681–683.
+- Chia PL et al. Current and evolving methods to visualize biological data in cancer research. *JNCI* 2016;108(8).
+
+---
+
 ## Requirements
- 
+
 ```
 pandas
 numpy
 matplotlib
+scipy
+lifelines       # survival analysis
 ```
- 
+
 ---
- 
-## Structure
- 
-Each visualization lives in its own folder:
- 
-```
-plot_name/
-├── README.md                  ← analytical context, design decisions, references
-├── plot_name.py               ← study-agnostic Python script
-├── plot_name_colab.ipynb      ← interactive Colab notebook
-├── data/                      ← synthetic ADaM input files
-└── output/                    ← example outputs at publication resolution
-```
- 
+
+## License
+
+Dataset released under **Creative Commons Attribution 4.0 International (CC BY 4.0)**.  
+Code released under **MIT License**.  
