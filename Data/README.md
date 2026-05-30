@@ -196,8 +196,8 @@ Renal        CREATININE
 Cardiac      QTcF
 ```
 
-Sodium is stored as `PARAMCD = "SOD"` to prevent pandas from silently converting
-the string `"NA"` to `NaN` on read. All other parameter codes are unambiguous.
+Sodium is stored as `PARAMCD = "SOD"` rather than `"NA"` to prevent accidental
+missing-value coercion in downstream tooling. All other parameter codes are unambiguous.
 
 Hy's Law candidates (peak ALT >3× ULN concurrent with peak BILI >2× ULN): **22 patients**,
 within the FDA-expected range of 5–25 for this population.
@@ -283,49 +283,47 @@ ASR / incidence trend lines             registry data      →  SEER / GLOBOCAN
 
 ## Usage
 
-**Generate (Google Colab)**
+**Generate data**
 
-```python
-from google.colab import drive
-drive.mount('/content/drive')
-
-exec(open('generate_adam_oncviz.py').read())
-datasets = generate_adam_oncviz(output_dir="/content/drive/MyDrive/ONCVIZ/data")
+```r
+source("generate_adam_oncviz.R")
+datasets <- generate_adam_oncviz(output_dir = "./data")
 ```
 
 **Load and subset**
 
-```python
-import pandas as pd
+```r
+library(dplyr)
 
-adsl  = pd.read_csv("ADSL.csv")
-adtte = pd.read_csv("ADTTE.csv")
+adsl  <- read.csv("data/ADSL.csv")
+adtte <- read.csv("data/ADTTE.csv")
 
 # Subset: NSCLC treatment arm
-nsclc_trt = adsl[(adsl["TUMORTYPE"] == "NSCLC") & (adsl["ARM"] == "TREATMENT")]
+nsclc_trt <- adsl |> filter(TUMORTYPE == "NSCLC", ARM == "TREATMENT")
 
 # OS data — 15 subgroup variables already embedded, no join required
-os = adtte[adtte["PARAMCD"] == "OS"]
+os <- adtte |> filter(PARAMCD == "OS")
 # Available subgroups: TUMORTYPE, AGEGR1, SEX, ECOG, PDL1GRP, MSISTS,
 # TMBHIGH, LIVERMETS, PRIORLINES, SMOKING, EGFRMUT, KRASMUT,
 # TP53MUT, STK11MUT, STAGE
 
-# Safe read for ADLB (Sodium = "SOD", not "NA")
-adlb = pd.read_csv("ADLB.csv")
-sodium = adlb[adlb["PARAMCD"] == "SOD"]
+# Safe read for ADLB — Sodium PARAMCD is "SOD", not "NA"
+adlb   <- read.csv("data/ADLB.csv")
+sodium <- adlb |> filter(PARAMCD == "SOD")
 ```
 
 ---
 
 ## Reproducibility
 
-Fixed seeds `numpy.random.seed(42)` and `random.seed(42)` are set before any sampling.
+The fixed seed `set.seed(42)` is applied before any sampling.
 The generator produces bitwise-identical output on:
 
 ```
-Python  >= 3.9
-numpy   >= 1.21
-pandas  >= 1.3
+R      >= 4.1
+dplyr  >= 1.0
+tidyr  >= 1.1
+purrr  >= 0.3
 ```
 
 License: **CC BY 4.0** — unrestricted reuse with attribution.
