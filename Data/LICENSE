@@ -1,0 +1,28 @@
+Creative Commons Attribution 4.0 International (CC BY 4.0)
+
+This applies to the synthetic ONCVIZ-001 dataset contained in this directory
+(Data/V1/, including oncoviz_data_v1.zip and its constituent CSV files, and
+generate_adam_synthetic.R as the data-generating script).
+
+Copyright (c) 2026 Aysan Nazarmohamady
+
+You are free to:
+  - Share — copy and redistribute the material in any medium or format
+  - Adapt — remix, transform, and build upon the material
+  for any purpose, even commercially.
+
+Under the following terms:
+  - Attribution — You must give appropriate credit, provide a link to this
+    repository, and indicate if changes were made. You may do so in any
+    reasonable manner, but not in any way that suggests the licensor
+    endorses you or your use.
+  - No additional restrictions — You may not apply legal terms or
+    technological measures that legally restrict others from doing anything
+    the license permits.
+
+Full legal text: https://creativecommons.org/licenses/by/4.0/legalcode
+
+Note: All patient-level data in this directory is entirely synthetic,
+generated deterministically (seed = 42) and is not derived from any real
+patient records. Code in this repository (R/Python/HTML/JS scripts) is
+licensed separately under MIT — see the LICENSE file at the repository root.

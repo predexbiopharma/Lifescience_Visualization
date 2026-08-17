@@ -1,0 +1,51 @@
+SUPPLEMENTARY TEST -- FREE-FORMAT PROMPT
+
+Purpose: the main test required an exact closed-list error code (e.g.
+"KM01") in a strict format. This prompt removes that rigid requirement
+and lets the model describe the error in its own words, to test whether
+the gap between models under the strict prompt was substantially about
+format-following rather than clinical understanding. Used on the same 25
+images from the closed-list test, both models (Claude Opus 4.8 and
+GPT-5.6 in the main supplementary run; a second, later run applied it to
+Claude alone for methodological symmetry after the initial run covered
+GPT-5.6 only).
+
+---
+
+You are reviewing a figure from an oncology clinical trial report for
+regulatory and statistical correctness.
+
+Look at the plot carefully and answer the following in plain language,
+as if explaining to a colleague:
+
+1. Is this figure correct, or does it contain an error? (state clearly)
+2. If there is an error, describe exactly what is wrong in your own
+   words -- be as specific as possible about what you observe (e.g.
+   which element, what the correct version should look like, why it
+   violates standard clinical trial reporting conventions).
+3. How confident are you in this assessment (low/medium/high)?
+
+There is no fixed list of error categories -- describe what you see in
+whatever terms are clearest and most accurate. Base your answer only on
+what is visible in the image (and the accompanying code/data if
+provided).
+
+---
+[IMAGE OR IMAGE+CODE ATTACHED HERE -- condition A: image only /
+condition B: image + underlying R code and data columns]
+
+---
+NOTE: this free-format condition surfaced two major findings:
+(1) GPT-5.6's semantic understanding was substantially higher under this
+    prompt (63.6-76.8% depending on scoring method) than its exact-code
+    match under the strict prompt (39.4%) -- see the semantic re-scoring
+    keyword taxonomy in this repo.
+(2) Claude Opus 4.8's specificity collapsed from 100% (strict prompt) to
+    ~0% under this prompt -- it flagged all 5 reference (correct) images
+    as flawed. Manual audit of these 15 responses found 12/15 were
+    template-like critiques not grounded in the specific image (the same
+    boilerplate complaint recurring across unrelated images), 2/15 were
+    a genuine, previously-undetected rendering defect (forest-plot CI
+    clipping, since fixed), and 1/15 was ambiguous. This audit was
+    performed by a Claude model, not an independent human rater --
+    disclosed as a limitation of the audit's own independence.

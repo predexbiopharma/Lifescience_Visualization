@@ -1,0 +1,21 @@
+error_id,plot_type,description,governing_standard,severity,injection_method,injector_function,checker_function
+KM01,kaplan_meier,Non-monotonic survival curve,KM estimator monotonic non-increasing (mathematical property),critical,code_patch,km01_swap_adjacent_survival,check_km_monotonic
+KM02,kaplan_meier,Missing censoring marks,ICH E9(R1) / standard KM convention,moderate,data_injection,km02_zero_censor_flag,check_km_censor_marks_present
+KM03,kaplan_meier,Curve does not start at 1.0,KM definition S(0)=1,critical,code_patch,km03_shift_survival_down,check_km_starts_at_one
+KM04,kaplan_meier,At-risk table mismatch with true risk sets,Basic statistical consistency,moderate,code_patch,km04_corrupt_n_risk,check_km_at_risk_matches_data
+FP01,forest,CI does not span point estimate,Basic statistical consistency (point estimate must lie in its own CI),critical,code_patch,fp01_push_point_outside_ci,check_forest_ci_contains_point
+FP02,forest,Wrong null reference line,Ratio-statistic null is 1.0,critical,code_patch,fp02_wrong_null_line,check_forest_null_line_correct
+FP03,forest,Asymmetric CI on log scale plotted linearly,Ratio CIs symmetric in log space,moderate,code_patch,fp03_linear_axis_for_ratio,check_forest_axis_is_log
+FP04,forest,Missing/incorrect subgroup N,CONSORT 2010 subgroup transparency,moderate,code_patch,fp04_inflate_subgroup_n,check_forest_subgroup_n_matches_data
+WF01,waterfall,Incorrect RECIST response color-coding,RECIST 1.1,critical,data_injection,wf01_miscode_response_color,check_waterfall_color_matches_pchg
+WF02,waterfall,Missing PD threshold reference line,RECIST 1.1,minor,code_patch,wf02_remove_pd_line,check_waterfall_pd_line_present
+WF03,waterfall,Bars not sorted by magnitude,Standard waterfall convention,minor,code_patch,wf03_shuffle_bar_order,check_waterfall_bars_sorted
+WF04,waterfall,Best overall response mismatch,RECIST 1.1 BOR definition,critical,data_injection,wf04_mismatch_bor,check_waterfall_bor_matches_data
+SW01,swimmer,Response symbol misaligned with timepoint,RECIST 1.1 assessment timing,critical,data_injection,sw01_shift_response_date,check_swimmer_marker_matches_assessment_date
+SW02,swimmer,Bar length inconsistent with duration data,Basic data consistency (TRTEDT-TRTSDT),moderate,data_injection,sw02_shift_trtedt,check_swimmer_bar_length_matches_dates
+SW03,swimmer,Missing ongoing-treatment arrow,Standard swimmer plot convention,minor,code_patch,sw03_drop_ongoing_markers,check_swimmer_ongoing_marker_present
+SW04,swimmer,Patient rows not consistently sorted,Basic visualization consistency,minor,code_patch,sw04_randomize_row_order,check_swimmer_rows_sorted
+CN01,consort,Numbers don't sum across CONSORT stages,CONSORT 2010,critical,data_injection,cn01_add_unaccounted_patient,check_consort_stage_arithmetic
+CN02,consort,Missing exclusion reasons,CONSORT 2010 (item 13),moderate,code_patch,cn02_drop_exclusion_reasons,check_consort_exclusion_reasons_present
+CN03,consort,Randomization N doesn't match arm totals,CONSORT 2010,critical,data_injection,cn03_relabel_arm,check_consort_arm_totals_match_randomization
+CN04,consort,Missing follow-up/loss-to-follow-up reporting,CONSORT 2010 (items 13-14),moderate,code_patch,cn04_drop_discontinuation_detail,check_consort_followup_reported

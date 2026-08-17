@@ -1,0 +1,207 @@
+{
+  "benchmark": "ONCVIZ-001 Phase 1",
+  "status_note": "This taxonomy covers the 20 errors actually implemented with real injector and checker code, across the 5 plot types executed in Phase 1 (Kaplan-Meier, waterfall, forest, swimmer, CONSORT). The full planned design (documented in Methods) specified 46 errors across 12 plot types; the remaining 26 errors (7 additional plot types: spider, toxicity heatmap, PK concentration-time, OncoPrint, volcano, cumulative incidence, enrollment/patient-flow) were scoped at design stage but never itemized to individual error codes or implemented with injector/checker code -- they remain future work, not a redacted/lost artifact.",
+  "n_errors": 20,
+  "errors": [
+    {
+      "error_id": "KM01",
+      "plot_type": "kaplan_meier",
+      "description": "Non-monotonic survival curve",
+      "governing_standard": "KM estimator monotonic non-increasing (mathematical property)",
+      "severity": "critical",
+      "injection_method": "code_patch",
+      "injector_function": "km01_swap_adjacent_survival",
+      "checker_function": "check_km_monotonic"
+    },
+    {
+      "error_id": "KM02",
+      "plot_type": "kaplan_meier",
+      "description": "Missing censoring marks",
+      "governing_standard": "ICH E9(R1) / standard KM convention",
+      "severity": "moderate",
+      "injection_method": "data_injection",
+      "injector_function": "km02_zero_censor_flag",
+      "checker_function": "check_km_censor_marks_present"
+    },
+    {
+      "error_id": "KM03",
+      "plot_type": "kaplan_meier",
+      "description": "Curve does not start at 1.0",
+      "governing_standard": "KM definition S(0)=1",
+      "severity": "critical",
+      "injection_method": "code_patch",
+      "injector_function": "km03_shift_survival_down",
+      "checker_function": "check_km_starts_at_one"
+    },
+    {
+      "error_id": "KM04",
+      "plot_type": "kaplan_meier",
+      "description": "At-risk table mismatch with true risk sets",
+      "governing_standard": "Basic statistical consistency",
+      "severity": "moderate",
+      "injection_method": "code_patch",
+      "injector_function": "km04_corrupt_n_risk",
+      "checker_function": "check_km_at_risk_matches_data"
+    },
+    {
+      "error_id": "FP01",
+      "plot_type": "forest",
+      "description": "CI does not span point estimate",
+      "governing_standard": "Basic statistical consistency (point estimate must lie in its own CI)",
+      "severity": "critical",
+      "injection_method": "code_patch",
+      "injector_function": "fp01_push_point_outside_ci",
+      "checker_function": "check_forest_ci_contains_point"
+    },
+    {
+      "error_id": "FP02",
+      "plot_type": "forest",
+      "description": "Wrong null reference line",
+      "governing_standard": "Ratio-statistic null is 1.0",
+      "severity": "critical",
+      "injection_method": "code_patch",
+      "injector_function": "fp02_wrong_null_line",
+      "checker_function": "check_forest_null_line_correct"
+    },
+    {
+      "error_id": "FP03",
+      "plot_type": "forest",
+      "description": "Asymmetric CI on log scale plotted linearly",
+      "governing_standard": "Ratio CIs symmetric in log space",
+      "severity": "moderate",
+      "injection_method": "code_patch",
+      "injector_function": "fp03_linear_axis_for_ratio",
+      "checker_function": "check_forest_axis_is_log"
+    },
+    {
+      "error_id": "FP04",
+      "plot_type": "forest",
+      "description": "Missing/incorrect subgroup N",
+      "governing_standard": "CONSORT 2010 subgroup transparency",
+      "severity": "moderate",
+      "injection_method": "code_patch",
+      "injector_function": "fp04_inflate_subgroup_n",
+      "checker_function": "check_forest_subgroup_n_matches_data"
+    },
+    {
+      "error_id": "WF01",
+      "plot_type": "waterfall",
+      "description": "Incorrect RECIST response color-coding",
+      "governing_standard": "RECIST 1.1",
+      "severity": "critical",
+      "injection_method": "data_injection",
+      "injector_function": "wf01_miscode_response_color",
+      "checker_function": "check_waterfall_color_matches_pchg"
+    },
+    {
+      "error_id": "WF02",
+      "plot_type": "waterfall",
+      "description": "Missing PD threshold reference line",
+      "governing_standard": "RECIST 1.1",
+      "severity": "minor",
+      "injection_method": "code_patch",
+      "injector_function": "wf02_remove_pd_line",
+      "checker_function": "check_waterfall_pd_line_present"
+    },
+    {
+      "error_id": "WF03",
+      "plot_type": "waterfall",
+      "description": "Bars not sorted by magnitude",
+      "governing_standard": "Standard waterfall convention",
+      "severity": "minor",
+      "injection_method": "code_patch",
+      "injector_function": "wf03_shuffle_bar_order",
+      "checker_function": "check_waterfall_bars_sorted"
+    },
+    {
+      "error_id": "WF04",
+      "plot_type": "waterfall",
+      "description": "Best overall response mismatch",
+      "governing_standard": "RECIST 1.1 BOR definition",
+      "severity": "critical",
+      "injection_method": "data_injection",
+      "injector_function": "wf04_mismatch_bor",
+      "checker_function": "check_waterfall_bor_matches_data"
+    },
+    {
+      "error_id": "SW01",
+      "plot_type": "swimmer",
+      "description": "Response symbol misaligned with timepoint",
+      "governing_standard": "RECIST 1.1 assessment timing",
+      "severity": "critical",
+      "injection_method": "data_injection",
+      "injector_function": "sw01_shift_response_date",
+      "checker_function": "check_swimmer_marker_matches_assessment_date"
+    },
+    {
+      "error_id": "SW02",
+      "plot_type": "swimmer",
+      "description": "Bar length inconsistent with duration data",
+      "governing_standard": "Basic data consistency (TRTEDT-TRTSDT)",
+      "severity": "moderate",
+      "injection_method": "data_injection",
+      "injector_function": "sw02_shift_trtedt",
+      "checker_function": "check_swimmer_bar_length_matches_dates"
+    },
+    {
+      "error_id": "SW03",
+      "plot_type": "swimmer",
+      "description": "Missing ongoing-treatment arrow",
+      "governing_standard": "Standard swimmer plot convention",
+      "severity": "minor",
+      "injection_method": "code_patch",
+      "injector_function": "sw03_drop_ongoing_markers",
+      "checker_function": "check_swimmer_ongoing_marker_present"
+    },
+    {
+      "error_id": "SW04",
+      "plot_type": "swimmer",
+      "description": "Patient rows not consistently sorted",
+      "governing_standard": "Basic visualization consistency",
+      "severity": "minor",
+      "injection_method": "code_patch",
+      "injector_function": "sw04_randomize_row_order",
+      "checker_function": "check_swimmer_rows_sorted"
+    },
+    {
+      "error_id": "CN01",
+      "plot_type": "consort",
+      "description": "Numbers don't sum across CONSORT stages",
+      "governing_standard": "CONSORT 2010",
+      "severity": "critical",
+      "injection_method": "data_injection",
+      "injector_function": "cn01_add_unaccounted_patient",
+      "checker_function": "check_consort_stage_arithmetic"
+    },
+    {
+      "error_id": "CN02",
+      "plot_type": "consort",
+      "description": "Missing exclusion reasons",
+      "governing_standard": "CONSORT 2010 (item 13)",
+      "severity": "moderate",
+      "injection_method": "code_patch",
+      "injector_function": "cn02_drop_exclusion_reasons",
+      "checker_function": "check_consort_exclusion_reasons_present"
+    },
+    {
+      "error_id": "CN03",
+      "plot_type": "consort",
+      "description": "Randomization N doesn't match arm totals",
+      "governing_standard": "CONSORT 2010",
+      "severity": "critical",
+      "injection_method": "data_injection",
+      "injector_function": "cn03_relabel_arm",
+      "checker_function": "check_consort_arm_totals_match_randomization"
+    },
+    {
+      "error_id": "CN04",
+      "plot_type": "consort",
+      "description": "Missing follow-up/loss-to-follow-up reporting",
+      "governing_standard": "CONSORT 2010 (items 13-14)",
+      "severity": "moderate",
+      "injection_method": "code_patch",
+      "injector_function": "cn04_drop_discontinuation_detail",
+      "checker_function": "check_consort_followup_reported"
+    }
+  ]
+}

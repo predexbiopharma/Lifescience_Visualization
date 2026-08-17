@@ -1,0 +1,229 @@
+sample_id,model_name,input_condition,repeat,ground_truth_error_id,ground_truth_severity,predicted_verdict,predicted_error_id,confidence,raw_description
+KM_reference,claude-opus-4-8,image_only,1,NONE,,CORRECT,NONE,HIGH,"Monotonic non-increasing step curves that start at 1.0, with censoring ticks and a consistent at-risk table; no error visible."
+KM_reference,claude-opus-4-8,image_only,2,NONE,,CORRECT,NONE,HIGH,"Monotonic non-increasing step curves that start at 1.0, with censoring ticks and a consistent at-risk table; no error visible."
+KM_reference,claude-opus-4-8,image_only,3,NONE,,CORRECT,NONE,HIGH,"Monotonic non-increasing step curves that start at 1.0, with censoring ticks and a consistent at-risk table; no error visible."
+WF_reference,claude-opus-4-8,image_only,1,NONE,,CORRECT,NONE,HIGH,"Bars descend monotonically by magnitude, RECIST colors match the percent-change direction, and the +20%/-30% reference lines are present."
+WF_reference,claude-opus-4-8,image_only,2,NONE,,CORRECT,NONE,HIGH,"Bars descend monotonically by magnitude, RECIST colors match the percent-change direction, and the +20%/-30% reference lines are present."
+WF_reference,claude-opus-4-8,image_only,3,NONE,,CORRECT,NONE,HIGH,"Bars descend monotonically by magnitude, RECIST colors match the percent-change direction, and the +20%/-30% reference lines are present."
+FP_reference,claude-opus-4-8,image_only,1,NONE,,CORRECT,NONE,HIGH,"Every subgroup point estimate falls within its own CI whisker, the null line is at HR=1.0, and the axis is log-spaced."
+FP_reference,claude-opus-4-8,image_only,2,NONE,,CORRECT,NONE,HIGH,"Every subgroup point estimate falls within its own CI whisker, the null line is at HR=1.0, and the axis is log-spaced."
+FP_reference,claude-opus-4-8,image_only,3,NONE,,CORRECT,NONE,HIGH,"Every subgroup point estimate falls within its own CI whisker, the null line is at HR=1.0, and the axis is log-spaced."
+SW_reference,claude-opus-4-8,image_only,1,NONE,,CORRECT,NONE,HIGH,"Rows sorted by best response, response markers sit at their assessment timepoints, and ongoing-treatment arrows are present."
+SW_reference,claude-opus-4-8,image_only,2,NONE,,CORRECT,NONE,HIGH,"Rows sorted by best response, response markers sit at their assessment timepoints, and ongoing-treatment arrows are present."
+SW_reference,claude-opus-4-8,image_only,3,NONE,,CORRECT,NONE,HIGH,"Rows sorted by best response, response markers sit at their assessment timepoints, and ongoing-treatment arrows are present."
+CN_reference,claude-opus-4-8,image_only,1,NONE,,CORRECT,NONE,HIGH,"Stage counts reconcile (92-12=80, arms 62+18=80), exclusion and discontinuation reasons are itemized, and follow-up nodes are present."
+CN_reference,claude-opus-4-8,image_only,2,NONE,,CORRECT,NONE,HIGH,"Stage counts reconcile (92-12=80, arms 62+18=80), exclusion and discontinuation reasons are itemized, and follow-up nodes are present."
+CN_reference,claude-opus-4-8,image_only,3,NONE,,CORRECT,NONE,HIGH,"Stage counts reconcile (92-12=80, arms 62+18=80), exclusion and discontinuation reasons are itemized, and follow-up nodes are present."
+KM01_flawed,claude-opus-4-8,image_only,1,KM01,critical,FLAWED,KM01,MEDIUM,"The upper (treatment) curve shows a small non-monotonic up-then-down notch, so the survival estimate is not monotonically non-increasing."
+KM01_flawed,claude-opus-4-8,image_only,2,KM01,critical,FLAWED,KM01,MEDIUM,"The upper (treatment) curve shows a small non-monotonic up-then-down notch, so the survival estimate is not monotonically non-increasing."
+KM01_flawed,claude-opus-4-8,image_only,3,KM01,critical,FLAWED,KM01,MEDIUM,"The upper (treatment) curve shows a small non-monotonic up-then-down notch, so the survival estimate is not monotonically non-increasing."
+KM01_flawed,claude-opus-4-8,image_plus_code,1,KM01,critical,FLAWED,KM01,HIGH,"The patched script swaps two adjacent km_fit$surv values before plotting, producing the visible non-monotonic uptick in the curve."
+KM01_flawed,claude-opus-4-8,image_plus_code,2,KM01,critical,FLAWED,KM01,HIGH,"The patched script swaps two adjacent km_fit$surv values before plotting, producing the visible non-monotonic uptick in the curve."
+KM01_flawed,claude-opus-4-8,image_plus_code,3,KM01,critical,FLAWED,KM01,HIGH,"The patched script swaps two adjacent km_fit$surv values before plotting, producing the visible non-monotonic uptick in the curve."
+KM02_flawed,claude-opus-4-8,image_only,1,KM02,moderate,FLAWED,KM02,HIGH,"No censoring tick marks appear on either curve, unlike the standard KM convention."
+KM02_flawed,claude-opus-4-8,image_only,2,KM02,moderate,FLAWED,KM02,HIGH,"No censoring tick marks appear on either curve, unlike the standard KM convention."
+KM02_flawed,claude-opus-4-8,image_only,3,KM02,moderate,FLAWED,KM02,HIGH,"No censoring tick marks appear on either curve, unlike the standard KM convention."
+KM03_flawed,claude-opus-4-8,image_only,1,KM03,critical,FLAWED,KM03,LOW,"The treatment curve takes an oversized first drop at the earliest event, consistent with the survival origin being shifted below 1.0."
+KM03_flawed,claude-opus-4-8,image_only,2,KM03,critical,FLAWED,KM03,LOW,"The treatment curve takes an oversized first drop at the earliest event, consistent with the survival origin being shifted below 1.0."
+KM03_flawed,claude-opus-4-8,image_only,3,KM03,critical,FLAWED,KM03,LOW,"The treatment curve takes an oversized first drop at the earliest event, consistent with the survival origin being shifted below 1.0."
+KM03_flawed,claude-opus-4-8,image_plus_code,1,KM03,critical,FLAWED,KM03,HIGH,"The patched script subtracts 0.08 from km_fit$surv, shifting the curve so it no longer starts at S(0)=1.0."
+KM03_flawed,claude-opus-4-8,image_plus_code,2,KM03,critical,FLAWED,KM03,HIGH,"The patched script subtracts 0.08 from km_fit$surv, shifting the curve so it no longer starts at S(0)=1.0."
+KM03_flawed,claude-opus-4-8,image_plus_code,3,KM03,critical,FLAWED,KM03,HIGH,"The patched script subtracts 0.08 from km_fit$surv, shifting the curve so it no longer starts at S(0)=1.0."
+KM04_flawed,claude-opus-4-8,image_only,1,KM04,moderate,FLAWED,KM04,HIGH,"The number-at-risk table starts at 13/57 while the curve headers state n=18 (control) and n=62 (treatment), so the at-risk table is inconsistent."
+KM04_flawed,claude-opus-4-8,image_only,2,KM04,moderate,FLAWED,KM04,HIGH,"The number-at-risk table starts at 13/57 while the curve headers state n=18 (control) and n=62 (treatment), so the at-risk table is inconsistent."
+KM04_flawed,claude-opus-4-8,image_only,3,KM04,moderate,FLAWED,KM04,HIGH,"The number-at-risk table starts at 13/57 while the curve headers state n=18 (control) and n=62 (treatment), so the at-risk table is inconsistent."
+KM04_flawed,claude-opus-4-8,image_plus_code,1,KM04,moderate,FLAWED,KM04,HIGH,"The patched script decrements km_fit$n.risk by a random 3-9, so the at-risk table no longer matches the enrolled N."
+KM04_flawed,claude-opus-4-8,image_plus_code,2,KM04,moderate,FLAWED,KM04,HIGH,"The patched script decrements km_fit$n.risk by a random 3-9, so the at-risk table no longer matches the enrolled N."
+KM04_flawed,claude-opus-4-8,image_plus_code,3,KM04,moderate,FLAWED,KM04,HIGH,"The patched script decrements km_fit$n.risk by a random 3-9, so the at-risk table no longer matches the enrolled N."
+WF01_flawed,claude-opus-4-8,image_only,1,WF01,critical,FLAWED,WF01,HIGH,"Bar colors do not match the percent-change magnitude/direction, so the RECIST response color-coding is inconsistent with the data."
+WF01_flawed,claude-opus-4-8,image_only,2,WF01,critical,FLAWED,WF01,HIGH,"Bar colors do not match the percent-change magnitude/direction, so the RECIST response color-coding is inconsistent with the data."
+WF01_flawed,claude-opus-4-8,image_only,3,WF01,critical,FLAWED,WF01,HIGH,"Bar colors do not match the percent-change magnitude/direction, so the RECIST response color-coding is inconsistent with the data."
+WF02_flawed,claude-opus-4-8,image_only,1,WF02,minor,FLAWED,WF02,MEDIUM,The +20% progressive-disease RECIST threshold reference line is absent.
+WF02_flawed,claude-opus-4-8,image_only,2,WF02,minor,FLAWED,WF02,MEDIUM,The +20% progressive-disease RECIST threshold reference line is absent.
+WF02_flawed,claude-opus-4-8,image_only,3,WF02,minor,FLAWED,WF02,MEDIUM,The +20% progressive-disease RECIST threshold reference line is absent.
+WF02_flawed,claude-opus-4-8,image_plus_code,1,WF02,minor,FLAWED,WF02,HIGH,"The patched script removes the +20% PD threshold reference line, matching the missing RECIST progression line in the image."
+WF02_flawed,claude-opus-4-8,image_plus_code,2,WF02,minor,FLAWED,WF02,HIGH,"The patched script removes the +20% PD threshold reference line, matching the missing RECIST progression line in the image."
+WF02_flawed,claude-opus-4-8,image_plus_code,3,WF02,minor,FLAWED,WF02,HIGH,"The patched script removes the +20% PD threshold reference line, matching the missing RECIST progression line in the image."
+WF03_flawed,claude-opus-4-8,image_only,1,WF03,minor,FLAWED,WF03,HIGH,"Bars are not ordered by magnitude, breaking the standard waterfall sort convention."
+WF03_flawed,claude-opus-4-8,image_only,2,WF03,minor,FLAWED,WF03,HIGH,"Bars are not ordered by magnitude, breaking the standard waterfall sort convention."
+WF03_flawed,claude-opus-4-8,image_only,3,WF03,minor,FLAWED,WF03,HIGH,"Bars are not ordered by magnitude, breaking the standard waterfall sort convention."
+WF03_flawed,claude-opus-4-8,image_plus_code,1,WF03,minor,FLAWED,WF03,HIGH,"The patched script shuffles the bar order instead of sorting by magnitude, matching the unsorted bars in the image."
+WF03_flawed,claude-opus-4-8,image_plus_code,2,WF03,minor,FLAWED,WF03,HIGH,"The patched script shuffles the bar order instead of sorting by magnitude, matching the unsorted bars in the image."
+WF03_flawed,claude-opus-4-8,image_plus_code,3,WF03,minor,FLAWED,WF03,HIGH,"The patched script shuffles the bar order instead of sorting by magnitude, matching the unsorted bars in the image."
+WF04_flawed,claude-opus-4-8,image_only,1,WF04,critical,FLAWED,WF04,LOW,"The best-response counts in the subtitle (CR:16/PR:6) do not match the underlying data (CR:15/PR:7), indicating a best-overall-response mismatch."
+WF04_flawed,claude-opus-4-8,image_only,2,WF04,critical,FLAWED,WF04,LOW,"The best-response counts in the subtitle (CR:16/PR:6) do not match the underlying data (CR:15/PR:7), indicating a best-overall-response mismatch."
+WF04_flawed,claude-opus-4-8,image_only,3,WF04,critical,FLAWED,WF04,LOW,"The best-response counts in the subtitle (CR:16/PR:6) do not match the underlying data (CR:15/PR:7), indicating a best-overall-response mismatch."
+FP01_flawed,claude-opus-4-8,image_only,1,FP01,critical,FLAWED,FP01,HIGH,"One subgroup point estimate (NSCLC) sits far to the right, detached from and outside its own confidence-interval whisker."
+FP01_flawed,claude-opus-4-8,image_only,2,FP01,critical,FLAWED,FP01,HIGH,"One subgroup point estimate (NSCLC) sits far to the right, detached from and outside its own confidence-interval whisker."
+FP01_flawed,claude-opus-4-8,image_only,3,FP01,critical,FLAWED,FP01,HIGH,"One subgroup point estimate (NSCLC) sits far to the right, detached from and outside its own confidence-interval whisker."
+FP01_flawed,claude-opus-4-8,image_plus_code,1,FP01,critical,FLAWED,FP01,HIGH,"The patched script sets one subgroup hr to hi_c*1.6, pushing the point estimate outside its own displayed CI."
+FP01_flawed,claude-opus-4-8,image_plus_code,2,FP01,critical,FLAWED,FP01,HIGH,"The patched script sets one subgroup hr to hi_c*1.6, pushing the point estimate outside its own displayed CI."
+FP01_flawed,claude-opus-4-8,image_plus_code,3,FP01,critical,FLAWED,FP01,HIGH,"The patched script sets one subgroup hr to hi_c*1.6, pushing the point estimate outside its own displayed CI."
+FP02_flawed,claude-opus-4-8,image_only,1,FP02,critical,FLAWED,FP02,HIGH,The dashed null reference line is drawn at HR=2.0 instead of the correct HR=1.0.
+FP02_flawed,claude-opus-4-8,image_only,2,FP02,critical,FLAWED,FP02,HIGH,The dashed null reference line is drawn at HR=2.0 instead of the correct HR=1.0.
+FP02_flawed,claude-opus-4-8,image_only,3,FP02,critical,FLAWED,FP02,HIGH,The dashed null reference line is drawn at HR=2.0 instead of the correct HR=1.0.
+FP02_flawed,claude-opus-4-8,image_plus_code,1,FP02,critical,FLAWED,FP02,HIGH,"The patched script draws geom_vline at xintercept=2 instead of 1, so the null reference line is wrong."
+FP02_flawed,claude-opus-4-8,image_plus_code,2,FP02,critical,FLAWED,FP02,HIGH,"The patched script draws geom_vline at xintercept=2 instead of 1, so the null reference line is wrong."
+FP02_flawed,claude-opus-4-8,image_plus_code,3,FP02,critical,FLAWED,FP02,HIGH,"The patched script draws geom_vline at xintercept=2 instead of 1, so the null reference line is wrong."
+FP03_flawed,claude-opus-4-8,image_only,1,FP03,moderate,FLAWED,FP03,MEDIUM,"The axis is labeled log scale but the HR tick marks are linearly spaced, so the ratio CIs are plotted on a linear axis."
+FP03_flawed,claude-opus-4-8,image_only,2,FP03,moderate,FLAWED,FP03,MEDIUM,"The axis is labeled log scale but the HR tick marks are linearly spaced, so the ratio CIs are plotted on a linear axis."
+FP03_flawed,claude-opus-4-8,image_only,3,FP03,moderate,FLAWED,FP03,MEDIUM,"The axis is labeled log scale but the HR tick marks are linearly spaced, so the ratio CIs are plotted on a linear axis."
+FP03_flawed,claude-opus-4-8,image_plus_code,1,FP03,moderate,FLAWED,FP03,HIGH,"The patched script uses scale_x_continuous instead of scale_x_log10 while keeping ratio CIs, plotting a log-scale quantity linearly."
+FP03_flawed,claude-opus-4-8,image_plus_code,2,FP03,moderate,FLAWED,FP03,HIGH,"The patched script uses scale_x_continuous instead of scale_x_log10 while keeping ratio CIs, plotting a log-scale quantity linearly."
+FP03_flawed,claude-opus-4-8,image_plus_code,3,FP03,moderate,FLAWED,FP03,HIGH,"The patched script uses scale_x_continuous instead of scale_x_log10 while keeping ratio CIs, plotting a log-scale quantity linearly."
+FP04_flawed,claude-opus-4-8,image_only,1,FP04,moderate,FLAWED,FP04,MEDIUM,"The subgroup sample sizes are inflated (Overall n=105 vs the ~80 implied by the arms), so the displayed Ns are inconsistent."
+FP04_flawed,claude-opus-4-8,image_only,2,FP04,moderate,FLAWED,FP04,MEDIUM,"The subgroup sample sizes are inflated (Overall n=105 vs the ~80 implied by the arms), so the displayed Ns are inconsistent."
+FP04_flawed,claude-opus-4-8,image_only,3,FP04,moderate,FLAWED,FP04,MEDIUM,"The subgroup sample sizes are inflated (Overall n=105 vs the ~80 implied by the arms), so the displayed Ns are inconsistent."
+FP04_flawed,claude-opus-4-8,image_plus_code,1,FP04,moderate,FLAWED,FP04,HIGH,"The patched script adds 25 to every subgroup N before labeling, so the displayed Ns are inflated and inconsistent."
+FP04_flawed,claude-opus-4-8,image_plus_code,2,FP04,moderate,FLAWED,FP04,HIGH,"The patched script adds 25 to every subgroup N before labeling, so the displayed Ns are inflated and inconsistent."
+FP04_flawed,claude-opus-4-8,image_plus_code,3,FP04,moderate,FLAWED,FP04,HIGH,"The patched script adds 25 to every subgroup N before labeling, so the displayed Ns are inflated and inconsistent."
+SW01_flawed,claude-opus-4-8,image_only,1,SW01,critical,FLAWED,SW01,MEDIUM,"A response marker is shifted away from its assessment timepoint, so a response symbol is misaligned with its bar position."
+SW01_flawed,claude-opus-4-8,image_only,2,SW01,critical,FLAWED,SW01,MEDIUM,"A response marker is shifted away from its assessment timepoint, so a response symbol is misaligned with its bar position."
+SW01_flawed,claude-opus-4-8,image_only,3,SW01,critical,FLAWED,SW01,MEDIUM,"A response marker is shifted away from its assessment timepoint, so a response symbol is misaligned with its bar position."
+SW02_flawed,claude-opus-4-8,image_only,1,SW02,moderate,FLAWED,SW02,MEDIUM,"One patient's treatment bar is truncated relative to the follow-up/death timeline, so the bar length is inconsistent with the duration data."
+SW02_flawed,claude-opus-4-8,image_only,2,SW02,moderate,FLAWED,SW02,MEDIUM,"One patient's treatment bar is truncated relative to the follow-up/death timeline, so the bar length is inconsistent with the duration data."
+SW02_flawed,claude-opus-4-8,image_only,3,SW02,moderate,FLAWED,SW02,MEDIUM,"One patient's treatment bar is truncated relative to the follow-up/death timeline, so the bar length is inconsistent with the duration data."
+SW03_flawed,claude-opus-4-8,image_only,1,SW03,minor,FLAWED,SW03,MEDIUM,"No ongoing-treatment (still-on-treatment) arrow markers appear at any bar end, though the legend defines them."
+SW03_flawed,claude-opus-4-8,image_only,2,SW03,minor,FLAWED,SW03,MEDIUM,"No ongoing-treatment (still-on-treatment) arrow markers appear at any bar end, though the legend defines them."
+SW03_flawed,claude-opus-4-8,image_only,3,SW03,minor,FLAWED,SW03,MEDIUM,"No ongoing-treatment (still-on-treatment) arrow markers appear at any bar end, though the legend defines them."
+SW03_flawed,claude-opus-4-8,image_plus_code,1,SW03,minor,FLAWED,SW03,HIGH,"The patched script drops all ongoing-arrow markers (ong_df subset to zero rows), matching the missing arrows in the image."
+SW03_flawed,claude-opus-4-8,image_plus_code,2,SW03,minor,FLAWED,SW03,HIGH,"The patched script drops all ongoing-arrow markers (ong_df subset to zero rows), matching the missing arrows in the image."
+SW03_flawed,claude-opus-4-8,image_plus_code,3,SW03,minor,FLAWED,SW03,HIGH,"The patched script drops all ongoing-arrow markers (ong_df subset to zero rows), matching the missing arrows in the image."
+SW04_flawed,claude-opus-4-8,image_only,1,SW04,minor,FLAWED,SW04,MEDIUM,Patient rows are not ordered by best response; the CR/PR/SD/PD blocks are scrambled.
+SW04_flawed,claude-opus-4-8,image_only,2,SW04,minor,FLAWED,SW04,MEDIUM,Patient rows are not ordered by best response; the CR/PR/SD/PD blocks are scrambled.
+SW04_flawed,claude-opus-4-8,image_only,3,SW04,minor,FLAWED,SW04,MEDIUM,Patient rows are not ordered by best response; the CR/PR/SD/PD blocks are scrambled.
+SW04_flawed,claude-opus-4-8,image_plus_code,1,SW04,minor,FLAWED,SW04,HIGH,"The patched script replaces arrange(bor_n, desc(trt_mo)) with a random sample(), leaving patient rows unsorted."
+SW04_flawed,claude-opus-4-8,image_plus_code,2,SW04,minor,FLAWED,SW04,HIGH,"The patched script replaces arrange(bor_n, desc(trt_mo)) with a random sample(), leaving patient rows unsorted."
+SW04_flawed,claude-opus-4-8,image_plus_code,3,SW04,minor,FLAWED,SW04,HIGH,"The patched script replaces arrange(bor_n, desc(trt_mo)) with a random sample(), leaving patient rows unsorted."
+CN01_flawed,claude-opus-4-8,image_only,1,CN01,critical,FLAWED,CN01,HIGH,"Assessed n=93 minus Excluded n=12 equals 81, not the Randomized n=80, so the stage counts do not sum."
+CN01_flawed,claude-opus-4-8,image_only,2,CN01,critical,FLAWED,CN01,HIGH,"Assessed n=93 minus Excluded n=12 equals 81, not the Randomized n=80, so the stage counts do not sum."
+CN01_flawed,claude-opus-4-8,image_only,3,CN01,critical,FLAWED,CN01,HIGH,"Assessed n=93 minus Excluded n=12 equals 81, not the Randomized n=80, so the stage counts do not sum."
+CN02_flawed,claude-opus-4-8,image_only,1,CN02,moderate,FLAWED,CN02,HIGH,"The Excluded and Discontinued boxes give only totals with no itemized reasons, omitting the required exclusion reasons."
+CN02_flawed,claude-opus-4-8,image_only,2,CN02,moderate,FLAWED,CN02,HIGH,"The Excluded and Discontinued boxes give only totals with no itemized reasons, omitting the required exclusion reasons."
+CN02_flawed,claude-opus-4-8,image_only,3,CN02,moderate,FLAWED,CN02,HIGH,"The Excluded and Discontinued boxes give only totals with no itemized reasons, omitting the required exclusion reasons."
+CN02_flawed,claude-opus-4-8,image_plus_code,1,CN02,moderate,FLAWED,CN02,HIGH,"The patched script removes the itemized exclusion/discontinuation reason lines, leaving only the box totals."
+CN02_flawed,claude-opus-4-8,image_plus_code,2,CN02,moderate,FLAWED,CN02,HIGH,"The patched script removes the itemized exclusion/discontinuation reason lines, leaving only the box totals."
+CN02_flawed,claude-opus-4-8,image_plus_code,3,CN02,moderate,FLAWED,CN02,HIGH,"The patched script removes the itemized exclusion/discontinuation reason lines, leaving only the box totals."
+CN03_flawed,claude-opus-4-8,image_only,1,CN03,critical,FLAWED,CN03,MEDIUM,"The arm allocation (Treatment n=63, Control n=17) does not match the true per-arm randomization (62/18)."
+CN03_flawed,claude-opus-4-8,image_only,2,CN03,critical,FLAWED,CN03,MEDIUM,"The arm allocation (Treatment n=63, Control n=17) does not match the true per-arm randomization (62/18)."
+CN03_flawed,claude-opus-4-8,image_only,3,CN03,critical,FLAWED,CN03,MEDIUM,"The arm allocation (Treatment n=63, Control n=17) does not match the true per-arm randomization (62/18)."
+CN04_flawed,claude-opus-4-8,image_only,1,CN04,moderate,FLAWED,CN04,HIGH,Both discontinuation boxes are stripped to a bare header with no counts or follow-up/loss reporting.
+CN04_flawed,claude-opus-4-8,image_only,2,CN04,moderate,FLAWED,CN04,HIGH,Both discontinuation boxes are stripped to a bare header with no counts or follow-up/loss reporting.
+CN04_flawed,claude-opus-4-8,image_only,3,CN04,moderate,FLAWED,CN04,HIGH,Both discontinuation boxes are stripped to a bare header with no counts or follow-up/loss reporting.
+CN04_flawed,claude-opus-4-8,image_plus_code,1,CN04,moderate,FLAWED,CN04,HIGH,The patched script removes the follow-up/loss reporting from the discontinuation nodes.
+CN04_flawed,claude-opus-4-8,image_plus_code,2,CN04,moderate,FLAWED,CN04,HIGH,The patched script removes the follow-up/loss reporting from the discontinuation nodes.
+CN04_flawed,claude-opus-4-8,image_plus_code,3,CN04,moderate,FLAWED,CN04,HIGH,The patched script removes the follow-up/loss reporting from the discontinuation nodes.
+KM_reference,gpt-5.6-sol,image_only,1,NONE,,CORRECT,NONE,HIGH,"The survival curves are monotonic, begin at 1.0, include censoring marks, and show no visible inconsistency with the number-at-risk table."
+KM_reference,gpt-5.6-sol,image_only,2,NONE,,CORRECT,NONE,HIGH,"The survival curves are monotonic, start at 1.0, include censoring marks, and show no visible inconsistency with the numbers-at-risk table."
+KM_reference,gpt-5.6-sol,image_only,3,NONE,,FLAWED,OTHER,HIGH,"The treatment and control survival curves use indistinguishable styling and no legend, so their group identities cannot be determined directly from the plot."
+WF_reference,gpt-5.6-sol,image_only,1,NONE,,FLAWED,WF01,HIGH,"Best-response color coding is inconsistent with the plotted percentage changes, including a Complete Response bar showing a positive increase from baseline."
+WF_reference,gpt-5.6-sol,image_only,2,NONE,,FLAWED,WF01,HIGH,Several bars labeled as complete or partial responses have percentage changes that do not meet the corresponding RECIST reduction criteria.
+WF_reference,gpt-5.6-sol,image_only,3,NONE,,FLAWED,WF01,HIGH,Several bars are color-coded as complete or partial responses despite percentage changes that do not meet the corresponding RECIST shrinkage criteria.
+FP_reference,gpt-5.6-sol,image_only,1,NONE,,FLAWED,OTHER,HIGH,"Several subgroup point estimates (NSCLC, HCC, PDAC, and PD-L1 High) are displayed without 95% confidence intervals."
+FP_reference,gpt-5.6-sol,image_only,2,NONE,,FLAWED,OTHER,HIGH,Several subgroup point estimates are displayed without the 95% confidence intervals indicated by the axis label.
+FP_reference,gpt-5.6-sol,image_only,3,NONE,,FLAWED,OTHER,HIGH,Several subgroup hazard-ratio estimates are displayed without corresponding 95% confidence intervals.
+SW_reference,gpt-5.6-sol,image_only,1,NONE,,CORRECT,NONE,HIGH,The swimmer plot shows 23 patient timelines with response and status symbols that are visually consistent with the legends and summary counts.
+SW_reference,gpt-5.6-sol,image_only,2,NONE,,CORRECT,NONE,MEDIUM,No clear regulatory or statistical error is visible in the swimmer plot.
+SW_reference,gpt-5.6-sol,image_only,3,NONE,,FLAWED,OTHER,HIGH,"The horizontal time axis lacks a label and unit, so the treatment and follow-up durations cannot be interpreted unambiguously."
+CN_reference,gpt-5.6-sol,image_only,1,NONE,,FLAWED,OTHER,HIGH,"In the treatment arm, the listed discontinuation reasons sum to 28, not the stated 38 participants who discontinued intervention."
+CN_reference,gpt-5.6-sol,image_only,2,NONE,,FLAWED,OTHER,HIGH,"In the treatment arm, the listed discontinuation reasons sum to 22, not the reported 38 discontinuations."
+CN_reference,gpt-5.6-sol,image_only,3,NONE,,FLAWED,OTHER,HIGH,"The participant-flow boxes lack visible connecting lines or arrows, making the trial flow unclear."
+KM01_flawed,gpt-5.6-sol,image_only,1,KM01,critical,FLAWED,OTHER,HIGH,The two treatment-group survival curves use indistinguishable styling and no legend or direct labels identify which curve represents each group.
+KM01_flawed,gpt-5.6-sol,image_only,2,KM01,critical,CORRECT,NONE,HIGH,"The survival curves are monotonic, start at 1.0, include censoring marks, and show no visible inconsistency with the at-risk table."
+KM01_flawed,gpt-5.6-sol,image_only,3,KM01,critical,CORRECT,NONE,HIGH,"The survival curves are monotonic and start at 1.0, censoring marks are shown, and no visible inconsistency is apparent in the at-risk table."
+KM01_flawed,gpt-5.6-sol,image_plus_code,1,KM01,critical,FLAWED,KM01 - non-monotonic survival curve,HIGH,"The Kaplan–Meier curve contains an upward step, although survival estimates must be non-increasing over time."
+KM01_flawed,gpt-5.6-sol,image_plus_code,2,KM01,critical,FLAWED,KM01 - non-monotonic survival curve,HIGH,"The Kaplan–Meier curve contains an upward step, although survival estimates must be non-increasing over time."
+KM01_flawed,gpt-5.6-sol,image_plus_code,3,KM01,critical,FLAWED,KM01 - non-monotonic survival curve,HIGH,"The Kaplan–Meier curve contains an upward step, whereas a survival estimate must be non-increasing over time."
+KM02_flawed,gpt-5.6-sol,image_only,1,KM02,moderate,FLAWED,KM02 - missing censoring marks,HIGH,The Kaplan–Meier curves show no censoring marks despite the displayed sample and event counts indicating censored observations.
+KM02_flawed,gpt-5.6-sol,image_only,2,KM02,moderate,FLAWED,KM02,HIGH,The Kaplan–Meier curves show no censoring marks despite the displayed event totals being lower than the treatment-group sample sizes.
+KM02_flawed,gpt-5.6-sol,image_only,3,KM02,moderate,FLAWED,KM02,HIGH,The Kaplan–Meier curves lack censoring marks despite the reported event counts being lower than the treatment-group sample sizes.
+KM03_flawed,gpt-5.6-sol,image_only,1,KM03,critical,FLAWED,OTHER,HIGH,The two survival curves use the same gray styling and no legend identifies which curve represents Treatment versus Control.
+KM03_flawed,gpt-5.6-sol,image_only,2,KM03,critical,CORRECT,NONE,HIGH,"The survival curves are monotonic, start at 1.0, include censoring marks, and the displayed at-risk counts are consistent with the reported group sizes."
+KM03_flawed,gpt-5.6-sol,image_only,3,KM03,critical,CORRECT,NONE,HIGH,"The survival curves are monotonic, start at 1.0, include censoring marks, and show no visible inconsistency with the at-risk table."
+KM03_flawed,gpt-5.6-sol,image_plus_code,1,KM03,critical,FLAWED,KM03,HIGH,"The code artificially subtracts 0.08 from all fitted survival estimates, causing the reported Kaplan–Meier curve to begin below 1.0."
+KM03_flawed,gpt-5.6-sol,image_plus_code,2,KM03,critical,FLAWED,KM03,HIGH,"The code subtracts 0.08 from all fitted survival estimates, causing the Kaplan–Meier curves to begin below the valid 1.0 baseline."
+KM03_flawed,gpt-5.6-sol,image_plus_code,3,KM03,critical,FLAWED,KM03,HIGH,"The fitted Kaplan–Meier survival values are artificially reduced by 0.08, causing the estimated curve to start below the required 1.0 probability."
+KM04_flawed,gpt-5.6-sol,image_only,1,KM04,moderate,FLAWED,KM04,HIGH,The time-zero at-risk counts (13 control and 57 treatment) do not match the stated subgroup sizes (18 control and 62 treatment).
+KM04_flawed,gpt-5.6-sol,image_only,2,KM04,moderate,FLAWED,KM04,HIGH,The at-risk table reports zero patients at later time points while the corresponding survival curves and censoring marks continue beyond those times.
+KM04_flawed,gpt-5.6-sol,image_only,3,KM04,moderate,FLAWED,KM04,HIGH,The at-risk table shows zero patients remaining while the corresponding survival curves continue beyond those time points.
+KM04_flawed,gpt-5.6-sol,image_plus_code,1,KM04,moderate,FLAWED,KM04,HIGH,"The at-risk table starts with 13 control and 57 treatment patients at month 0, inconsistent with the displayed group sizes of 18 and 62."
+KM04_flawed,gpt-5.6-sol,image_plus_code,2,KM04,moderate,FLAWED,KM04,HIGH,"The at-risk table is corrupted, showing 13 control and 57 treatment patients at time zero despite reported group sizes of 18 and 62."
+KM04_flawed,gpt-5.6-sol,image_plus_code,3,KM04,moderate,FLAWED,KM04,HIGH,"The at-risk table starts with 13 control and 57 treatment patients at time zero, conflicting with the displayed group sizes of 18 and 62."
+WF01_flawed,gpt-5.6-sol,image_only,1,WF01,critical,FLAWED,WF01 - RECIST response color-coding inconsistent with % change,HIGH,"Several bars colored as Complete Response have best tumor reductions substantially less than 100%, which is inconsistent with the displayed response category."
+WF01_flawed,gpt-5.6-sol,image_only,2,WF01,critical,FLAWED,WF01,HIGH,"Best-response color coding is inconsistent with the plotted percentage changes, including complete responses shown at reductions substantially less than 100%."
+WF01_flawed,gpt-5.6-sol,image_only,3,WF01,critical,FLAWED,WF01,HIGH,"Multiple bars labeled as complete or partial responses have percentage changes that do not meet the visible RECIST response thresholds, including complete responses well above −100%."
+WF02_flawed,gpt-5.6-sol,image_only,1,WF02,minor,FLAWED,WF01,HIGH,"Several bars have RECIST response colors inconsistent with their displayed percentage changes, including complete responses above −100% and stable disease bars below the −30% partial-response threshold."
+WF02_flawed,gpt-5.6-sol,image_only,2,WF02,minor,FLAWED,WF02,HIGH,The RECIST progressive disease threshold at +20% is not shown as a distinct reference line.
+WF02_flawed,gpt-5.6-sol,image_only,3,WF02,minor,FLAWED,WF01,HIGH,"The response color-coding is inconsistent with the plotted percentage change, most clearly an orange Stable Disease bar showing approximately an 80% reduction."
+WF02_flawed,gpt-5.6-sol,image_plus_code,1,WF02,minor,FLAWED,WF02,HIGH,The +20% PD threshold is labeled but its corresponding horizontal reference line is missing.
+WF02_flawed,gpt-5.6-sol,image_plus_code,2,WF02,minor,FLAWED,WF02,HIGH,The +20% progressive disease threshold is labeled but its dashed reference line is missing.
+WF02_flawed,gpt-5.6-sol,image_plus_code,3,WF02,minor,FLAWED,WF02,HIGH,The +20% progressive-disease threshold is labeled but its corresponding reference line is missing.
+WF03_flawed,gpt-5.6-sol,image_only,1,WF03,minor,FLAWED,WF03 - bars not sorted by magnitude,HIGH,The waterfall bars are not ordered by best percentage change from baseline.
+WF03_flawed,gpt-5.6-sol,image_only,2,WF03,minor,FLAWED,WF03 - bars not sorted by magnitude,HIGH,The waterfall bars are not ordered by best percentage change from lowest to highest or highest to lowest.
+WF03_flawed,gpt-5.6-sol,image_only,3,WF03,minor,FLAWED,WF03,HIGH,The waterfall bars are not sorted by the magnitude of best percentage change from baseline.
+WF03_flawed,gpt-5.6-sol,image_plus_code,1,WF03,minor,FLAWED,WF03,HIGH,The waterfall bars are displayed in random subject order rather than being sorted by magnitude of percent change.
+WF03_flawed,gpt-5.6-sol,image_plus_code,2,WF03,minor,FLAWED,WF03,HIGH,The waterfall bars are displayed in random order rather than being sorted by magnitude of percentage change.
+WF03_flawed,gpt-5.6-sol,image_plus_code,3,WF03,minor,FLAWED,WF03,HIGH,The waterfall bars are displayed in random order rather than sorted by percent change magnitude.
+WF04_flawed,gpt-5.6-sol,image_only,1,WF04,critical,FLAWED,WF01,HIGH,"Several bars are color-coded as complete response despite showing tumor reductions far short of 100%, which is inconsistent with RECIST response criteria."
+WF04_flawed,gpt-5.6-sol,image_only,2,WF04,critical,FLAWED,WF01,HIGH,"Best-response colors are inconsistent with the plotted percentage changes, including Complete Response bars that do not show a 100% reduction from baseline."
+WF04_flawed,gpt-5.6-sol,image_only,3,WF04,critical,FLAWED,WF01,HIGH,"Response color-coding is inconsistent with the plotted percentage changes, including a Stable Disease bar near −80% and Complete Response bars well above −100%."
+FP01_flawed,gpt-5.6-sol,image_only,1,FP01,critical,FLAWED,OTHER,HIGH,Several subgroup point estimates are displayed without corresponding 95% confidence intervals.
+FP01_flawed,gpt-5.6-sol,image_only,2,FP01,critical,FLAWED,OTHER,HIGH,"Confidence intervals are missing for several subgroup estimates, including NSCLC, HCC, PDAC, and PD-L1 High."
+FP01_flawed,gpt-5.6-sol,image_only,3,FP01,critical,FLAWED,OTHER,HIGH,Several subgroup point estimates are displayed without corresponding 95% confidence intervals despite the plot being labeled as showing hazard ratios with 95% CIs.
+FP01_flawed,gpt-5.6-sol,image_plus_code,1,FP01,critical,FLAWED,FP01,HIGH,The NSCLC point estimate lies outside its displayed 95% confidence interval.
+FP01_flawed,gpt-5.6-sol,image_plus_code,2,FP01,critical,FLAWED,FP01,HIGH,The NSCLC point estimate lies outside its displayed confidence interval.
+FP01_flawed,gpt-5.6-sol,image_plus_code,3,FP01,critical,FLAWED,FP01,HIGH,The NSCLC point estimate lies outside its corresponding 95% confidence interval due to the hazard ratio being artificially increased.
+FP02_flawed,gpt-5.6-sol,image_only,1,FP02,critical,FLAWED,FP02 - wrong null reference line,HIGH,The dashed null reference line is drawn at a hazard ratio of 2.0 rather than the correct null value of 1.0.
+FP02_flawed,gpt-5.6-sol,image_only,2,FP02,critical,FLAWED,FP02,HIGH,The null reference line is incorrectly drawn at a hazard ratio of 2.0 instead of 1.0.
+FP02_flawed,gpt-5.6-sol,image_only,3,FP02,critical,FLAWED,FP02,HIGH,The null reference line is incorrectly placed at a hazard ratio of 2.0 rather than 1.0.
+FP02_flawed,gpt-5.6-sol,image_plus_code,1,FP02,critical,FLAWED,FP02,HIGH,The dashed null reference line is drawn at a hazard ratio of 2 rather than the correct null value of 1.
+FP02_flawed,gpt-5.6-sol,image_plus_code,2,FP02,critical,FLAWED,FP02,HIGH,The dashed null reference line is incorrectly placed at a hazard ratio of 2 rather than 1.
+FP02_flawed,gpt-5.6-sol,image_plus_code,3,FP02,critical,FLAWED,FP02,HIGH,The dashed null reference line is incorrectly placed at a hazard ratio of 2 rather than 1.
+FP03_flawed,gpt-5.6-sol,image_only,1,FP03,moderate,FLAWED,FP03,HIGH,The hazard-ratio confidence intervals are plotted on a linear x-axis despite the axis being labeled as logarithmic.
+FP03_flawed,gpt-5.6-sol,image_only,2,FP03,moderate,FLAWED,OTHER,HIGH,"Confidence intervals are missing for several subgroup point estimates, including NSCLC, HCC, PDAC, and PD-L1 High."
+FP03_flawed,gpt-5.6-sol,image_only,3,FP03,moderate,FLAWED,FP03,HIGH,"The hazard-ratio axis is labeled as logarithmic but its tick spacing is linear, causing multiplicative confidence intervals to appear asymmetrically displayed."
+FP03_flawed,gpt-5.6-sol,image_plus_code,1,FP03,moderate,FLAWED,FP03,HIGH,Hazard-ratio confidence intervals are displayed on a linear x-axis despite the axis being labeled as a log scale.
+FP03_flawed,gpt-5.6-sol,image_plus_code,2,FP03,moderate,FLAWED,FP03,HIGH,The hazard ratios and asymmetric confidence intervals are plotted on a linear x-axis despite the axis being labeled as a log scale.
+FP03_flawed,gpt-5.6-sol,image_plus_code,3,FP03,moderate,FLAWED,FP03,HIGH,The hazard-ratio confidence intervals are displayed on a linear x-axis even though the axis is labeled as logarithmic.
+FP04_flawed,gpt-5.6-sol,image_only,1,FP04,moderate,FLAWED,OTHER,HIGH,"Confidence intervals are missing for several subgroup point estimates, including NSCLC, HCC, PDAC, and PD-L1 High."
+FP04_flawed,gpt-5.6-sol,image_only,2,FP04,moderate,FLAWED,FP04,HIGH,"The subgroup sample sizes are inconsistent with the overall N, as the age and sex strata each total 130 while the overall population is labeled n=105."
+FP04_flawed,gpt-5.6-sol,image_only,3,FP04,moderate,FLAWED,FP04,HIGH,"The displayed subgroup Ns are inconsistent with the overall N=105, as complementary categories such as age and sex each sum to 130."
+FP04_flawed,gpt-5.6-sol,image_plus_code,1,FP04,moderate,FLAWED,FP04,HIGH,The displayed subgroup sample sizes are each inflated by 25 relative to the underlying data counts.
+FP04_flawed,gpt-5.6-sol,image_plus_code,2,FP04,moderate,FLAWED,FP04,HIGH,The displayed subgroup sample sizes are each inflated by 25 relative to the underlying data.
+FP04_flawed,gpt-5.6-sol,image_plus_code,3,FP04,moderate,FLAWED,FP04,HIGH,The displayed subgroup sample sizes are each inflated by 25 relative to the underlying data.
+SW01_flawed,gpt-5.6-sol,image_only,1,SW01,critical,FLAWED,OTHER,HIGH,"The swimmer plot omits patient identifiers or labels on the y-axis, so individual patient timelines cannot be identified."
+SW01_flawed,gpt-5.6-sol,image_only,2,SW01,critical,FLAWED,OTHER,HIGH,"The horizontal time axis lacks a label and units, making the displayed treatment durations ambiguous."
+SW01_flawed,gpt-5.6-sol,image_only,3,SW01,critical,CORRECT,NONE,HIGH,"The swimmer plot’s treatment durations, follow-up periods, response markers, event symbols, legend, and patient summary appear internally consistent."
+SW02_flawed,gpt-5.6-sol,image_only,1,SW02,moderate,CORRECT,NONE,HIGH,"The plot shows 23 patient timelines matching the enrollment summary, with treatment, follow-up, response, and terminal-status symbols depicted consistently with the legend."
+SW02_flawed,gpt-5.6-sol,image_only,2,SW02,moderate,CORRECT,NONE,HIGH,"No visible inconsistency is apparent among the 23 patient timelines, event markers, legends, and enrollment summary."
+SW02_flawed,gpt-5.6-sol,image_only,3,SW02,moderate,CORRECT,NONE,MEDIUM,No visible statistical or regulatory inconsistency is evident in the swimmer plot.
+SW03_flawed,gpt-5.6-sol,image_only,1,SW03,minor,CORRECT,NONE,MEDIUM,"The swimmer plot appears internally consistent, with 23 patient rows matching the summary and no visible plotting error."
+SW03_flawed,gpt-5.6-sol,image_only,2,SW03,minor,FLAWED,OTHER,HIGH,"The legend defines a triangle for “Still on Treatment,” but ongoing treatment bars terminate without displaying this endpoint marker."
+SW03_flawed,gpt-5.6-sol,image_only,3,SW03,minor,FLAWED,OTHER,HIGH,"The legend defines a triangle for “Still on Treatment,” but ongoing treatment bars end without the corresponding triangle markers."
+SW03_flawed,gpt-5.6-sol,image_plus_code,1,SW03,minor,FLAWED,OTHER,HIGH,Ongoing patients lack the “Still on Treatment” endpoint markers shown in the legend.
+SW03_flawed,gpt-5.6-sol,image_plus_code,2,SW03,minor,FLAWED,OTHER,HIGH,"The plot legend defines a “Still on Treatment” marker, but the code explicitly removes all ongoing-treatment arrow markers from the patient bars."
+SW03_flawed,gpt-5.6-sol,image_plus_code,3,SW03,minor,FLAWED,OTHER,HIGH,"The legend defines a “Still on Treatment” marker, but all ongoing-treatment endpoint markers are deliberately omitted from the plotted patient bars."
+SW04_flawed,gpt-5.6-sol,image_only,1,SW04,minor,CORRECT,NONE,HIGH,"The swimmer plot’s treatment durations, follow-up periods, response markers, and status symbols appear internally consistent with the visible legend and summary."
+SW04_flawed,gpt-5.6-sol,image_only,2,SW04,minor,CORRECT,NONE,HIGH,"The swimmer plot shows internally consistent treatment durations, follow-up periods, event markers, legend symbols, and patient counts with no visible error."
+SW04_flawed,gpt-5.6-sol,image_only,3,SW04,minor,CORRECT,NONE,MEDIUM,"The swimmer plot shows no visible inconsistency in treatment durations, response coding, event markers, or patient counts."
+SW04_flawed,gpt-5.6-sol,image_plus_code,1,SW04,minor,FLAWED,OTHER,HIGH,The swimmer plot subjects are randomly ordered rather than systematically sorted by response category and treatment duration.
+SW04_flawed,gpt-5.6-sol,image_plus_code,2,SW04,minor,FLAWED,OTHER,HIGH,The swimmer plot patient rows are randomly ordered rather than arranged systematically by best response and treatment duration.
+SW04_flawed,gpt-5.6-sol,image_plus_code,3,SW04,minor,FLAWED,OTHER,HIGH,The swimmer plot subjects are randomly ordered rather than systematically sorted by response and treatment duration.
+CN01_flawed,gpt-5.6-sol,image_only,1,CN01,critical,FLAWED,OTHER,HIGH,"The flow counts are inconsistent because 93 assessed minus 12 excluded equals 81, not the 80 reported as randomized."
+CN01_flawed,gpt-5.6-sol,image_only,2,CN01,critical,FLAWED,OTHER,HIGH,"The flow counts are inconsistent because 93 assessed minus 12 excluded equals 81, not the 80 reported as randomized."
+CN01_flawed,gpt-5.6-sol,image_only,3,CN01,critical,FLAWED,OTHER,HIGH,"The flow counts are inconsistent because 93 assessed minus 12 excluded equals 81, not the reported 80 randomized."
+CN02_flawed,gpt-5.6-sol,image_only,1,CN02,moderate,CORRECT,NONE,HIGH,All visible participant counts and discontinuation-reason totals are internally consistent from eligibility through ITT and safety analyses.
+CN02_flawed,gpt-5.6-sol,image_only,2,CN02,moderate,CORRECT,NONE,HIGH,The participant counts and discontinuation-reason totals are internally consistent throughout the flow diagram.
+CN02_flawed,gpt-5.6-sol,image_only,3,CN02,moderate,FLAWED,OTHER,HIGH,"In the treatment arm, the listed discontinuation reasons total 22 patients, not the reported 38."
+CN02_flawed,gpt-5.6-sol,image_plus_code,1,CN02,moderate,FLAWED,OTHER,HIGH,The excluded participant box reports only the total (n = 12) and omits the reasons for exclusion despite the caption stating that these reasons are shown.
+CN02_flawed,gpt-5.6-sol,image_plus_code,2,CN02,moderate,FLAWED,OTHER,HIGH,"The exclusion reasons are omitted, and the listed treatment discontinuation reasons total 32 rather than the stated 38."
+CN02_flawed,gpt-5.6-sol,image_plus_code,3,CN02,moderate,FLAWED,OTHER,HIGH,The diagram reports 12 excluded participants but omits their reasons for exclusion despite the caption stating that exclusion reasons are provided.
+CN03_flawed,gpt-5.6-sol,image_only,1,CN03,critical,FLAWED,OTHER,HIGH,"The flowchart boxes lack visible connecting lines or arrows, obscuring the participant flow between trial stages."
+CN03_flawed,gpt-5.6-sol,image_only,2,CN03,critical,CORRECT,NONE,HIGH,Participant counts and disposition reasons are internally consistent throughout the flow diagram.
+CN03_flawed,gpt-5.6-sol,image_only,3,CN03,critical,CORRECT,NONE,HIGH,Participant counts and disposition subtotals are internally consistent throughout the trial flow diagram.
+CN04_flawed,gpt-5.6-sol,image_only,1,CN04,moderate,FLAWED,OTHER,HIGH,The participant-flow diagram labels discontinued intervention in both groups but omits the numbers and reasons for discontinuation.
+CN04_flawed,gpt-5.6-sol,image_only,2,CN04,moderate,FLAWED,OTHER,HIGH,The participant-flow diagram omits the numbers and reasons for intervention discontinuation in both treatment groups.
+CN04_flawed,gpt-5.6-sol,image_only,3,CN04,moderate,FLAWED,OTHER,HIGH,"The “Discontinued intervention” boxes omit participant counts, leaving the disposition flow incomplete."
+CN04_flawed,gpt-5.6-sol,image_plus_code,1,CN04,moderate,FLAWED,OTHER,HIGH,The CONSORT flow diagram omits the numbers and reasons for intervention discontinuation in both treatment arms.
+CN04_flawed,gpt-5.6-sol,image_plus_code,2,CN04,moderate,FLAWED,OTHER,HIGH,The participant-flow diagram omits the numbers and reasons for intervention discontinuation in both treatment groups.
+CN04_flawed,gpt-5.6-sol,image_plus_code,3,CN04,moderate,FLAWED,OTHER,HIGH,The participant-flow diagram omits the numbers and reasons for intervention discontinuation in both treatment arms.
